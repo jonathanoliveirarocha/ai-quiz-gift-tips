@@ -74,8 +74,8 @@ api.get('/results/:id', async (req, res, next) => {
 // Registro de cliques nos links das lojas (base para medir conversão de afiliados).
 api.post('/clicks', async (req, res) => {
   const { resultId, title, store, url, kind } = req.body ?? {};
-  res.status(204).end();
-  if (!isDbReady() || typeof url !== 'string' || !url.startsWith('https://')) return;
+  // Grava antes de responder: em função serverless, trabalho depois da resposta pode ser interrompido.
+  if (!isDbReady() || typeof url !== 'string' || !url.startsWith('https://')) return res.status(204).end();
   const result = mongoose.isValidObjectId(resultId) ? resultId : undefined;
   await Click.create({
     result,
@@ -85,6 +85,7 @@ api.post('/clicks', async (req, res) => {
     kind: ['ideal', 'suggestion', 'catalog'].includes(kind) ? kind : 'suggestion',
   }).catch(() => {});
   if (result) await QuizResult.updateOne({ _id: result }, { $inc: { clicks: 1 } }).catch(() => {});
+  res.status(204).end();
 });
 
 // ---------- Administração do catálogo de produtos parceiros (afiliados) ----------

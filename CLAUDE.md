@@ -175,3 +175,32 @@ ideias-de-projeto/
 - Nada de números, clientes, depoimentos ou fontes inventados; toda hipótese é marcada como tal.
 - Nada de dark patterns, urgência falsa ou promessa que o produto não cumpre.
 - Os agentes aumentam a chance de sucesso, mas não garantem lucro: validar com clientes reais e com profissionais habilitados (advogado, contador) continua obrigatório antes de investir pesado.
+
+---
+
+# Projeto: Presente Certo (site)
+
+Quiz de presentes com IA. A pessoa responde 11 perguntas sobre quem vai ganhar o presente, o Gemini escolhe o presente ideal e sugere outras ideias, e o site mostra cards com links para lojas confiáveis. Implementa o produto 9 de [ideias/black-friday-top-10-produtos.md](ideias/black-friday-top-10-produtos.md) e o quiz de setup de [ideias/gta-6-top-10-produtos.md](ideias/gta-6-top-10-produtos.md).
+
+## Como rodar
+- **Windows:** dois cliques em `start.bat`. Ele instala as dependências na primeira vez, cria `backend/.env` (pedindo a chave do Gemini) e sobe backend (porta 3001) e frontend (porta 5173), abrindo o navegador.
+- **Manual:** `npm install`, depois `npm run dev`. Produção em um único servidor: `npm run prod` (o backend serve `frontend/dist` na porta 3001).
+- Sem `GEMINI_API_KEY`, o site roda em **modo demonstração** (ideias de um banco fixo, com aviso na tela).
+
+## Stack e estrutura
+- Monorepo com npm workspaces: `frontend/` (React + TypeScript + Vite, `motion`, `lucide-react`) e `backend/` (Node + JavaScript ESM, Express 5, Mongoose, `@google/genai`).
+- `backend/src/services/gemini.js`: prompt do sistema, schema JSON da resposta e chamada ao `gemini-3.5-flash-lite` (repete automaticamente em erros 503/500).
+- `backend/src/services/stores.js`: **única fonte dos links das lojas**. A IA só escolhe o termo de busca e as lojas de uma lista fixa (Amazon, Mercado Livre, Magalu, Americanas, Shopee, KaBuM!, Google Shopping, Google); o backend monta as URLs. Nunca use URL vinda da IA.
+- `backend/src/db.js`: conecta em `MONGODB_URI` (local ou Atlas). Se o DNS local recusar consultas SRV do Atlas, tenta de novo com DNS públicos. Sem MongoDB disponível, sobe um MongoDB embutido em `backend/.data` (o primeiro start baixa cerca de 780 MB).
+- Coleções: `quizresults` (respostas + resultado, base do link `/r/:id`), `products` (catálogo de parceiros/afiliados) e `clicks` (cliques nas lojas).
+
+## Afiliados (preparado para o futuro)
+- **Amazon:** `AMAZON_ASSOCIATE_TAG` adiciona `&tag=` em todos os links.
+- **Outras lojas e redes** (Awin, Lomadee etc.): `AFFILIATE_TEMPLATE_<LOJA>` com `{url}` ou `{query}` transforma o link em deep link de afiliado.
+- **Catálogo próprio:** produtos com link de afiliado, imagem e preço aparecem em "Ofertas selecionadas" quando as tags combinam com o resultado. Para cadastrar: `npm run import:catalog -- arquivo.json` (formato em `backend/data/catalogo-exemplo.json`) ou a API `/api/admin/products` com o header `x-admin-token` (defina `ADMIN_TOKEN`). `GET /api/admin/stats` mostra cliques por loja.
+- Links de afiliado recebem `rel="sponsored"`, e o rodapé avisa que pode haver comissão (exigência do CONAR).
+
+## Deploy na Vercel
+- `vercel.json`: o build gera `frontend/dist` (servido pela CDN), e `/api/*` é reescrito para a função `api/index.js`, que exporta o app Express de `backend/src/app.js`. `backend/src/server.js` é só para rodar localmente.
+- Na Vercel, o MongoDB embutido fica desativado: é obrigatório configurar `MONGODB_URI` (Atlas) nas variáveis de ambiente do projeto, junto com `GEMINI_API_KEY` (e, se usar, `ADMIN_TOKEN`, `AMAZON_ASSOCIATE_TAG` e `AFFILIATE_TEMPLATE_*`).
+- `@vercel/analytics` (visitas) e `@vercel/speed-insights` (Core Web Vitals) estão em `frontend/src/main.tsx`. As URLs `/r/<id>` são agrupadas como `/r/[id]`.

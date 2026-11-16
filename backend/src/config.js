@@ -16,7 +16,8 @@ export const config = {
   geminiApiKey: env('GEMINI_API_KEY'),
   geminiModel: env('GEMINI_MODEL', 'gemini-3.5-flash-lite'),
   mongoUri: env('MONGODB_URI', 'mongodb://127.0.0.1:27017/presente-certo'),
-  embeddedMongo: env('MONGODB_EMBEDDED', 'true') !== 'false',
+  // O MongoDB embutido só faz sentido na máquina local; na Vercel use o Atlas.
+  embeddedMongo: env('MONGODB_EMBEDDED', 'true') !== 'false' && !process.env.VERCEL,
   embeddedDbPath: path.join(backendDir, '.data', 'db'),
   adminToken: env('ADMIN_TOKEN'),
   amazonTag: env('AMAZON_ASSOCIATE_TAG'),

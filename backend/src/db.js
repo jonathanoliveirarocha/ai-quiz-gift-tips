@@ -44,7 +44,17 @@ async function startEmbeddedMongo() {
   }
 }
 
-export async function connectDatabase() {
+// Idempotente: chamadas repetidas (ex.: cada requisição na Vercel) reaproveitam a mesma conexão.
+let connecting = null;
+export function connectDatabase() {
+  if (isDbReady()) return Promise.resolve();
+  connecting ??= doConnect().finally(() => {
+    if (!isDbReady()) connecting = null;
+  });
+  return connecting;
+}
+
+async function doConnect() {
   try {
     await connectExternal(config.mongoUri);
     status = { state: 'conectado', mode: isLocalUri(config.mongoUri) ? 'local' : 'remoto' };

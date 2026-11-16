@@ -1,6 +1,7 @@
 {
   "name": "presente-certo",
   "private": true,
+  "type": "module",
   "description": "Quiz de presentes com IA (Gemini) que sugere produtos reais em lojas confiáveis.",
   "workspaces": [
     "backend",
