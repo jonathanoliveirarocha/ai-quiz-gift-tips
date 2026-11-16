@@ -1,0 +1,24 @@
+[
+  {
+    "title": "Kindle Paperwhite",
+    "description": "Leitor de livros digitais com tela antirreflexo e luz ajustável.",
+    "imageUrl": "",
+    "price": 799,
+    "store": "amazon",
+    "url": "https://www.amazon.com.br/s?k=kindle+paperwhite&tag=SUA-TAG-20",
+    "tags": ["leitura", "livros", "kindle", "tecnologia"],
+    "priority": 3,
+    "active": false
+  },
+  {
+    "title": "Fone Bluetooth JBL Tune 520BT",
+    "description": "Fone sem fio com até 57 horas de bateria.",
+    "imageUrl": "",
+    "price": 299,
+    "store": "magalu",
+    "url": "https://www.magazineluiza.com.br/busca/jbl+tune+520bt/?SEU-LINK-DE-AFILIADO",
+    "tags": ["musica", "fone", "tecnologia"],
+    "priority": 2,
+    "active": false
+  }
+]

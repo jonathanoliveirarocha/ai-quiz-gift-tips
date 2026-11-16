@@ -1,0 +1,19 @@
+{
+  "name": "presente-certo",
+  "private": true,
+  "description": "Quiz de presentes com IA (Gemini) que sugere produtos reais em lojas confiáveis.",
+  "workspaces": [
+    "backend",
+    "frontend"
+  ],
+  "scripts": {
+    "setup": "node scripts/setup.mjs",
+    "dev": "concurrently -k -n api,web -c magenta,cyan \"npm run start -w backend\" \"npm run dev -w frontend\"",
+    "build": "npm run build -w frontend",
+    "prod": "npm run build && npm run start -w backend",
+    "import:catalog": "npm run import:catalog -w backend --"
+  },
+  "devDependencies": {
+    "concurrently": "^10.0.7"
+  }
+}
