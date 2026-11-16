@@ -183,12 +183,14 @@ ideias-de-projeto/
 Quiz de presentes com IA. A pessoa responde 11 perguntas sobre quem vai ganhar o presente, o Gemini escolhe o presente ideal e sugere outras ideias, e o site mostra cards com links para lojas confiáveis. Implementa o produto 9 de [ideias/black-friday-top-10-produtos.md](ideias/black-friday-top-10-produtos.md) e o quiz de setup de [ideias/gta-6-top-10-produtos.md](ideias/gta-6-top-10-produtos.md).
 
 ## Como rodar
-- **Windows:** dois cliques em `start.bat`. Ele instala as dependências na primeira vez, cria `backend/.env` (pedindo a chave do Gemini) e sobe backend (porta 3001) e frontend (porta 5173), abrindo o navegador.
-- **Manual:** `npm install`, depois `npm run dev`. Produção em um único servidor: `npm run prod` (o backend serve `frontend/dist` na porta 3001).
-- Sem `GEMINI_API_KEY`, o site roda em **modo demonstração** (ideias de um banco fixo, com aviso na tela).
+`backend/` e `frontend/` são projetos independentes, cada um com seu `package.json`, `node_modules` e deploy.
+- **Backend:** `cd backend`, `npm install`, copie `.env.example` para `.env` e preencha, depois `npm run dev` (porta 3001).
+- **Frontend:** `cd frontend`, `npm install`; o `frontend/.env` define `VITE_API_URL` (endereço do backend); depois `npm run dev` (porta 5173).
+- Sem `GEMINI_API_KEY`, o backend roda em **modo demonstração** (ideias de um banco fixo, com aviso na tela).
 
 ## Stack e estrutura
-- Monorepo com npm workspaces: `frontend/` (React + TypeScript + Vite, `motion`, `lucide-react`) e `backend/` (Node + JavaScript ESM, Express 5, Mongoose, `@google/genai`).
+- `frontend/` (React + TypeScript + Vite, `motion`, `lucide-react`) chama a API em `VITE_API_URL` + `/api/...`. `backend/` (Node + JavaScript ESM, Express 5, Mongoose, `@google/genai`) libera as origens de `CORS_ORIGIN`.
+- `backend/src/app.js` é o app Express, exportado como default (entrypoint da Vercel). `backend/src/local.js` só sobe o servidor localmente.
 - `backend/src/services/gemini.js`: prompt do sistema, schema JSON da resposta e chamada ao `gemini-3.5-flash-lite` (repete automaticamente em erros 503/500).
 - `backend/src/services/stores.js`: **única fonte dos links das lojas**. A IA só escolhe o termo de busca e as lojas de uma lista fixa (Amazon, Mercado Livre, Magalu, Americanas, Shopee, KaBuM!, Google Shopping, Google); o backend monta as URLs. Nunca use URL vinda da IA.
 - `backend/src/db.js`: conecta em `MONGODB_URI` (local ou Atlas). Se o DNS local recusar consultas SRV do Atlas, tenta de novo com DNS públicos. Sem MongoDB disponível, sobe um MongoDB embutido em `backend/.data` (o primeiro start baixa cerca de 780 MB).
@@ -200,7 +202,7 @@ Quiz de presentes com IA. A pessoa responde 11 perguntas sobre quem vai ganhar o
 - **Catálogo próprio:** produtos com link de afiliado, imagem e preço aparecem em "Ofertas selecionadas" quando as tags combinam com o resultado. Para cadastrar: `npm run import:catalog -- arquivo.json` (formato em `backend/data/catalogo-exemplo.json`) ou a API `/api/admin/products` com o header `x-admin-token` (defina `ADMIN_TOKEN`). `GET /api/admin/stats` mostra cliques por loja.
 - Links de afiliado recebem `rel="sponsored"`, e o rodapé avisa que pode haver comissão (exigência do CONAR).
 
-## Deploy na Vercel
-- `vercel.json`: o build gera `frontend/dist` (servido pela CDN), e `/api/*` é reescrito para a função `api/index.js`, que exporta o app Express de `backend/src/app.js`. `backend/src/server.js` é só para rodar localmente.
-- Na Vercel, o MongoDB embutido fica desativado: é obrigatório configurar `MONGODB_URI` (Atlas) nas variáveis de ambiente do projeto, junto com `GEMINI_API_KEY` (e, se usar, `ADMIN_TOKEN`, `AMAZON_ASSOCIATE_TAG` e `AFFILIATE_TEMPLATE_*`).
+## Deploy na Vercel (dois projetos)
+- **Backend:** projeto com Root Directory `backend`. A Vercel detecta o Express sozinha por `src/app.js`, sem `vercel.json`. Variáveis obrigatórias: `GEMINI_API_KEY`, `MONGODB_URI` (Atlas; o MongoDB embutido fica desativado na Vercel) e `CORS_ORIGIN` com o domínio do frontend (aceita `*`, ex.: `https://meu-front.vercel.app,https://meu-front-*.vercel.app`). Opcionais: `GEMINI_MODEL`, `ADMIN_TOKEN`, `AMAZON_ASSOCIATE_TAG`, `AFFILIATE_TEMPLATE_*`.
+- **Frontend:** projeto com Root Directory `frontend` (preset Vite). Variável obrigatória: `VITE_API_URL` com a URL do backend (lida no build; refaça o deploy se mudar). `frontend/vercel.json` reescreve tudo para `index.html` (rotas `/r/:id`).
 - `@vercel/analytics` (visitas) e `@vercel/speed-insights` (Core Web Vitals) estão em `frontend/src/main.tsx`. As URLs `/r/<id>` são agrupadas como `/r/[id]`.
