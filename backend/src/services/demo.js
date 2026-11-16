@@ -81,7 +81,7 @@ export function generateDemo(answers, exclude = []) {
   return {
     profile: {
       archetype: traits.length ? `Perfil ${traits.join(' + ')}` : 'Uma pessoa única',
-      summary: `Modo demonstração: este perfil foi montado sem IA, a partir dos interesses marcados. Configure a chave do Gemini para receber uma análise de verdade.`,
+      summary: `Modo demonstração: este perfil foi montado a partir dos interesses marcados, sem a análise completa da IA.`,
       emoji: '✨',
     },
     idealGift: { ...toItem(ideal), confidence: matched.length ? 82 : 64 },

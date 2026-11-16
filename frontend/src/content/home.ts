@@ -12,7 +12,7 @@ export const HOME = {
 export const HOME_FAQ: { q: string; a: string }[] = [
   {
     q: 'Como a IA descobre o presente ideal?',
-    a: 'Você responde 11 perguntas sobre a pessoa: relação, idade, ocasião, orçamento, jeito, gostos, como é o sábado perfeito dela e o que ela já tem ou não curte. A IA do Google Gemini cruza tudo isso e indica um presente principal, explica por que ele combina e sugere outras ideias dentro do mesmo orçamento.',
+    a: 'Você responde 11 perguntas sobre a pessoa: relação, idade, ocasião, orçamento, jeito, gostos, como é o sábado perfeito dela e o que ela já tem ou não curte. A IA cruza tudo isso e indica um presente principal, explica por que ele combina e sugere outras ideias dentro do mesmo orçamento.',
   },
   {
     q: 'O Presente Certo é grátis?',

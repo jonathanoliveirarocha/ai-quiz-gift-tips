@@ -10,7 +10,7 @@ const STORES = ['Amazon', 'Mercado Livre', 'Magalu', 'Americanas', 'Shopee', 'Ka
 
 const STEPS = [
   { icon: MessageCircleHeart, title: 'Conte sobre a pessoa', text: 'Jeito, gostos, rotina e aquele detalhe que só você sabe.' },
-  { icon: Sparkles, title: 'A IA analisa tudo', text: 'O Gemini cruza as respostas e escolhe o presente que mais combina.' },
+  { icon: Sparkles, title: 'A IA analisa tudo', text: 'A IA cruza as respostas e escolhe o presente que mais combina.' },
   { icon: ShoppingBag, title: 'Compre com segurança', text: 'Opções reais, com links diretos para lojas confiáveis.' },
 ]
 
@@ -20,7 +20,7 @@ export default function Landing({ onStart }: { onStart: () => void }) {
       <section className="hero">
         <div className="hero-copy">
           <motion.span className="pill" initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}>
-            <Sparkles size={14} /> Feito com a IA do Google Gemini
+            <Sparkles size={14} /> Presente escolhido por inteligência artificial
           </motion.span>
           <h1 className="hero-title">
             O presente <em className="grad-text">certo</em> para quem você ama.

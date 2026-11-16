@@ -79,8 +79,8 @@ export default function Result({ data, onRestart, onEdit, onMoreIdeas }: Props) 
         <div className="demo-banner">
           <Info size={18} />
           <span>
-            <strong>Modo demonstração:</strong> as sugestões abaixo não foram feitas pela IA. Coloque sua chave do Gemini em{' '}
-            <code>backend/.env</code> e reinicie para receber recomendações personalizadas de verdade.
+            <strong>Modo demonstração:</strong> as sugestões abaixo são exemplos gerais e ainda não foram personalizadas
+            pela IA.
           </span>
         </div>
       )}

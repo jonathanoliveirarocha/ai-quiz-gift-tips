@@ -1562,28 +1562,6 @@ input[type='range']::-moz-range-thumb {
   max-width: 620px;
 }
 
-.status {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  white-space: nowrap;
-}
-
-.status-sep {
-  opacity: 0.5;
-}
-
-.dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--soft);
-}
-
-.dot.on { background: var(--mint); box-shadow: 0 0 10px var(--mint); }
-.dot.warn { background: var(--gold); box-shadow: 0 0 10px var(--gold); }
-.dot.off { background: #ff5a78; box-shadow: 0 0 10px #ff5a78; }
-
 /* ---------- Guias e conteúdo (SEO) ---------- */
 .sr-only {
   position: absolute;

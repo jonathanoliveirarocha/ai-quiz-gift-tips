@@ -86,11 +86,21 @@ function friendlyError(err) {
   if (err?.name === 'AbortError' || /aborted|timeout/i.test(err?.message ?? '')) {
     return new GiftAIError('A IA demorou demais para responder. Tente de novo.', 504);
   }
-  if (status === 400 && /api key/i.test(err.message)) return new GiftAIError('A chave do Gemini é inválida. Confira GEMINI_API_KEY em backend/.env.', 500);
-  if (status === 401 || status === 403) return new GiftAIError('A chave do Gemini não tem permissão para este modelo. Confira backend/.env.', 500);
-  if (status === 404) return new GiftAIError(`O modelo "${config.geminiModel}" não foi encontrado. Confira GEMINI_MODEL em backend/.env.`, 500);
-  if (status === 429) return new GiftAIError('Limite de uso da IA atingido. Espere um pouco e tente de novo.', 429);
-  if (status >= 500) return new GiftAIError('O Gemini está instável agora. Tente de novo em instantes.', 503);
+  // Problemas de configuração ficam só no log do servidor; quem usa o site vê uma mensagem genérica.
+  const configHint =
+    status === 400 && /api key/i.test(err.message)
+      ? 'GEMINI_API_KEY inválida.'
+      : status === 401 || status === 403
+        ? 'GEMINI_API_KEY sem permissão para o modelo.'
+        : status === 404
+          ? `Modelo "${config.geminiModel}" não encontrado (GEMINI_MODEL).`
+          : null;
+  if (configHint) {
+    console.error(`[ia] Erro de configuração: ${configHint} Confira as variáveis do backend.`);
+    return new GiftAIError('Não foi possível gerar as sugestões agora. Tente de novo em instantes.', 500);
+  }
+  if (status === 429) return new GiftAIError('Muita gente usando a IA agora. Espere um pouco e tente de novo.', 429);
+  if (status >= 500) return new GiftAIError('A IA está instável agora. Tente de novo em instantes.', 503);
   return new GiftAIError('Não foi possível gerar as sugestões agora. Tente de novo.');
 }
 

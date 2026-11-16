@@ -2,7 +2,7 @@ import { Router } from 'express';
 import mongoose from 'mongoose';
 import { rateLimit } from 'express-rate-limit';
 import { config } from './config.js';
-import { dbStatus, isDbReady } from './db.js';
+import { isDbReady } from './db.js';
 import { QuizResult, Product, Click } from './models.js';
 import { parseAnswers, parseExclude } from './services/answers.js';
 import { generateWithGemini } from './services/gemini.js';
@@ -23,18 +23,21 @@ const quizLimiter = rateLimit({
   message: { error: 'Muitas consultas seguidas. Espere alguns minutos e tente de novo.' },
 });
 
+// O banco guarda o provedor e o modelo usados (análise interna), mas a API pública só diz se foi a IA ou o modo demonstração.
+const publicMode = (mode) => (mode === 'demo' ? 'demo' : 'ia');
+
 const serializeResult = (doc) => ({
   id: String(doc._id),
-  mode: doc.mode,
-  model: doc.model,
+  mode: publicMode(doc.mode),
   createdAt: doc.createdAt,
   answers: doc.answers,
   result: doc.result,
   catalog: doc.catalog ?? [],
 });
 
+// Público: não expõe provedor de IA, modelo nem banco (esses detalhes aparecem só nos logs do servidor).
 api.get('/health', (req, res) => {
-  res.json({ ok: true, ai: aiMode(), model: aiMode() === 'gemini' ? config.geminiModel : null, db: dbStatus() });
+  res.json({ ok: true });
 });
 
 api.post('/quiz', quizLimiter, async (req, res, next) => {
@@ -53,7 +56,7 @@ api.post('/quiz', quizLimiter, async (req, res, next) => {
       const doc = await QuizResult.create(payload);
       return res.json(serializeResult(doc));
     }
-    res.json({ id: null, createdAt: new Date().toISOString(), ...payload });
+    res.json({ id: null, createdAt: new Date().toISOString(), answers, result, catalog, mode: publicMode(mode) });
   } catch (err) {
     next(err);
   }
@@ -62,7 +65,7 @@ api.post('/quiz', quizLimiter, async (req, res, next) => {
 api.get('/results/:id', async (req, res, next) => {
   try {
     if (!mongoose.isValidObjectId(req.params.id)) return res.status(404).json({ error: 'Resultado não encontrado.' });
-    if (!isDbReady()) return res.status(503).json({ error: 'Banco de dados indisponível no momento.' });
+    if (!isDbReady()) return res.status(503).json({ error: 'Não foi possível abrir este resultado agora. Tente de novo em instantes.' });
     const doc = await QuizResult.findById(req.params.id).lean();
     if (!doc) return res.status(404).json({ error: 'Resultado não encontrado.' });
     res.json(serializeResult(doc));

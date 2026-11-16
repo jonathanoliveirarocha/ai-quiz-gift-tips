@@ -56,19 +56,11 @@ export type CatalogProduct = {
 
 export type QuizResponse = {
   id: string | null
-  mode: 'gemini' | 'demo'
-  model: string | null
+  mode: 'ia' | 'demo'
   createdAt: string
   answers: Answers
   result: GiftResult
   catalog: CatalogProduct[]
-}
-
-export type Health = {
-  ok: boolean
-  ai: 'gemini' | 'demo'
-  model: string | null
-  db: { state: string; mode: string | null }
 }
 
 export type ClickKind = 'ideal' | 'suggestion' | 'catalog'

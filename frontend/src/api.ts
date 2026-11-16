@@ -1,4 +1,4 @@
-import type { Answers, ClickKind, Health, QuizResponse } from './types.ts'
+import type { Answers, ClickKind, QuizResponse } from './types.ts'
 
 // Endereço do backend, definido em frontend/.env (VITE_API_URL).
 const API_URL = (import.meta.env.VITE_API_URL ?? '').replace(/\/+$/, '')
@@ -20,8 +20,6 @@ export const generateGift = (answers: Answers, exclude: string[] = []) =>
   request<QuizResponse>('/quiz', { method: 'POST', body: JSON.stringify({ answers, exclude }) })
 
 export const getResult = (id: string) => request<QuizResponse>(`/results/${id}`)
-
-export const getHealth = () => request<Health>('/health')
 
 // text/plain não dispara preflight de CORS, então o beacon chega mesmo saindo da página.
 export function trackClick(click: { resultId: string | null; title: string; store: string; url: string; kind: ClickKind }) {
