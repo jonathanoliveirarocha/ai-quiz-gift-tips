@@ -1,5 +1,8 @@
 import { motion } from 'motion/react'
 import { ArrowRight, ShieldCheck, Sparkles, MessageCircleHeart, ShoppingBag } from 'lucide-react'
+import { GUIDE_LINKS } from '../content/guides/registry.ts'
+import { HOME_FAQ } from '../content/home.ts'
+import Faq from './Faq.tsx'
 
 const ORBIT = ['☕', '📚', '🎧', '🎮', '🌿', '📸', '🍷', '🎨']
 const OCCASIONS = ['🎄 Natal', '🎂 Aniversário', '🤫 Amigo secreto', '💘 Namoro', '💐 Dia das Mães', '👔 Dia dos Pais', '🏆 Formatura', '💍 Casamento', '🙏 Agradecimento', '💝 Só porque sim']
@@ -23,8 +26,8 @@ export default function Landing({ onStart }: { onStart: () => void }) {
             O presente <em className="grad-text">certo</em> para quem você ama.
           </h1>
           <p className="hero-text">
-            Responda perguntas rápidas sobre a pessoa. A IA entende o jeito, os gostos e os detalhes, e diz qual é o
-            presente ideal, com opções reais nas lojas mais confiáveis do Brasil.
+            Não sabe o que dar de presente? Responda perguntas rápidas sobre a pessoa. A IA entende o jeito, os gostos e os
+            detalhes, e diz qual é o presente ideal, com opções reais nas lojas mais confiáveis do Brasil.
           </p>
           <div className="hero-cta">
             <button className="btn btn-primary btn-lg" onClick={onStart}>
@@ -60,6 +63,7 @@ export default function Landing({ onStart }: { onStart: () => void }) {
         </div>
       </div>
 
+      <h2 className="sr-only">Como funciona</h2>
       <section className="steps">
         {STEPS.map(({ icon: Icon, title, text }, i) => (
           <motion.article
@@ -87,6 +91,31 @@ export default function Landing({ onStart }: { onStart: () => void }) {
             <span key={s}>{s}</span>
           ))}
         </div>
+      </section>
+
+      <section className="home-section" aria-labelledby="guias">
+        <div className="section-head">
+          <h2 id="guias">Ideias de presente para cada pessoa e ocasião</h2>
+          <p>Guias com dicas para escolher e ideias organizadas por estilo e orçamento.</p>
+        </div>
+        <ul className="guide-links">
+          {GUIDE_LINKS.map((g) => (
+            <li key={g.slug}>
+              <a className="guide-link glass" href={`/${g.slug}`}>
+                <span aria-hidden="true">{g.emoji}</span>
+                {g.label}
+                <ArrowRight size={16} />
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <section className="home-section" aria-labelledby="faq">
+        <div className="section-head">
+          <h2 id="faq">Perguntas frequentes</h2>
+        </div>
+        <Faq items={HOME_FAQ} />
       </section>
     </div>
   )
