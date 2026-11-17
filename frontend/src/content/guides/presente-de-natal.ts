@@ -2,7 +2,7 @@ import type { Guide } from '../types.ts'
 
 const guide: Guide = {
   slug: 'presente-de-natal',
-  title: 'Presente de Natal: ideias para a família | Presente Certo',
+  title: 'Presente de Natal: ideias para a família | Mimo Certo',
   description:
     'Ideias de presente de Natal para a família, opções baratas e criativas, e dicas para montar sua lista sem estourar o orçamento. Escolha com calma e carinho.',
   label: 'Presente de Natal',
@@ -12,7 +12,7 @@ const guide: Guide = {
   intro: [
     'Pensar no presente de Natal de cada pessoa da lista pode virar uma maratona: pais, avós, sobrinhos, cunhados, o amigo secreto da família e ainda aquela lembrança para a vizinha. A boa notícia é que não precisa ser caro para ser marcante. O que faz diferença é mostrar que você prestou atenção em quem vai receber.',
     'Aqui você encontra um passo a passo para organizar as compras sem apertar o orçamento, ideias para a família, para quem quer gastar pouco, para quem busca algo criativo e para os pequenos, além de dicas para comprar com tranquilidade.',
-    'Se travar em alguém da lista, o quiz do Presente Certo ajuda: você descreve a pessoa e a IA sugere ideias pensadas para o valor que você escolher.',
+    'Se travar em alguém da lista, o quiz do Mimo Certo ajuda: você descreve a pessoa e a IA sugere ideias pensadas para o valor que você escolher.',
   ],
   preset: { occasion: 'Natal' },
   cta: 'Descobrir um presente de Natal',
@@ -209,7 +209,7 @@ const guide: Guide = {
     },
     {
       q: 'Como escolher presente de Natal para quem eu não conheço bem?',
-      a: 'Comece pelo básico: idade, o que a pessoa faz no tempo livre e o que costuma comentar. Comidas especiais e objetos para a casa são escolhas seguras. Outra opção é o quiz gratuito do Presente Certo: em cerca de 2 minutos você responde 11 perguntas, e a IA sugere ideias pensadas para o orçamento que você escolher, com links para lojas conhecidas, e uma sugestão de mensagem para o cartão.',
+      a: 'Comece pelo básico: idade, o que a pessoa faz no tempo livre e o que costuma comentar. Comidas especiais e objetos para a casa são escolhas seguras. Outra opção é o quiz gratuito do Mimo Certo: em cerca de 2 minutos você responde 11 perguntas, e a IA sugere ideias pensadas para o orçamento que você escolher, com links para lojas conhecidas, e uma sugestão de mensagem para o cartão.',
     },
   ],
   related: ['presente-para-mae', 'presente-para-pai', 'presente-para-crianca', 'presente-amigo-secreto'],

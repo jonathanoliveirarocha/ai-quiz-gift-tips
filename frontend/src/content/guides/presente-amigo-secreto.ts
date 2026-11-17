@@ -2,7 +2,7 @@ import type { Guide } from '../types.ts'
 
 const guide: Guide = {
   slug: 'presente-amigo-secreto',
-  title: 'Presente de amigo secreto: ideias e dicas | Presente Certo',
+  title: 'Presente de amigo secreto: ideias e dicas | Mimo Certo',
   description:
     'Ideias de presente de amigo secreto por faixa de preço, opções unissex e para a firma, e dicas para respeitar o valor combinado. Veja e escolha sem sufoco.',
   label: 'Presente de amigo secreto',
@@ -12,7 +12,7 @@ const guide: Guide = {
   intro: [
     'Escolher um presente de amigo secreto parece simples até o nome sair no papel e você perceber que mal conhece a pessoa. Pode ser a prima que você vê uma vez por ano no amigo secreto de Natal, alguém do setor ao lado ou o amigo de um amigo. O desafio é acertar o gosto sem passar do valor combinado e sem cair naquele item genérico que vai direto para a gaveta.',
     'Neste guia você encontra um jeito prático de investigar o sorteado sem estragar a surpresa, ideias por faixa de preço aproximada e por tipo de grupo, e respostas para as dúvidas que sempre aparecem na hora da troca.',
-    'Se preferir um atalho, o quiz do Presente Certo faz 11 perguntas rápidas sobre o sorteado e a IA sugere ideias pensadas para o limite que o grupo definiu.',
+    'Se preferir um atalho, o quiz do Mimo Certo faz 11 perguntas rápidas sobre o sorteado e a IA sugere ideias pensadas para o limite que o grupo definiu.',
   ],
   preset: { relationship: 'Amigo secreto', occasion: 'Amigo secreto' },
   cta: 'Descobrir o presente do meu amigo secreto',
@@ -189,7 +189,7 @@ const guide: Guide = {
     },
     {
       q: 'Como descobrir rápido o que dar de amigo secreto?',
-      a: 'Uma forma rápida é responder ao quiz gratuito do Presente Certo. São 11 perguntas sobre o sorteado, como idade, jeito, gostos e o que evitar, e em cerca de 2 minutos a IA indica um presente principal e outras ideias pensadas para o orçamento que você escolher, com links para lojas conhecidas. Não é preciso fazer cadastro.',
+      a: 'Uma forma rápida é responder ao quiz gratuito do Mimo Certo. São 11 perguntas sobre o sorteado, como idade, jeito, gostos e o que evitar, e em cerca de 2 minutos a IA indica um presente principal e outras ideias pensadas para o orçamento que você escolher, com links para lojas conhecidas. Não é preciso fazer cadastro.',
     },
   ],
   related: ['presente-ate-50-reais', 'presente-para-colega-de-trabalho', 'presente-de-natal', 'presente-criativo'],

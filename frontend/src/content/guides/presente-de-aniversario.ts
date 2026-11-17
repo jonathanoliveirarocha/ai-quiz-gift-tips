@@ -2,7 +2,7 @@ import type { Guide } from '../types.ts'
 
 const guide: Guide = {
   slug: 'presente-de-aniversario',
-  title: 'Presente de aniversário: ideias criativas | Presente Certo',
+  title: 'Presente de aniversário: ideias criativas | Mimo Certo',
   description:
     'Ideias de presente de aniversário criativas, baratas e para cada estilo de pessoa, com dicas para escolher bem. Encontre algo com a cara do aniversariante.',
   label: 'Presente de aniversário',
@@ -12,7 +12,7 @@ const guide: Guide = {
   intro: [
     'Um bom presente de aniversário é aquele que faz a pessoa pensar: você lembrou disso. Não depende de quanto custa, e sim de quanto combina com o momento de vida dela, com o que ela gosta de fazer e com a relação que vocês têm. Pode ser um objeto útil, algo ligado a um hobby ou um item que vira programa.',
     'Neste guia você encontra um método simples para chegar a boas ideias de presente de aniversário, sugestões separadas por estilo de pessoa, opções criativas, opções baratas e presentes para quem prefere viver momentos, além de respostas para dúvidas comuns, como o que dar para quem já tem tudo.',
-    'Se o tempo estiver curto, o quiz do Presente Certo faz perguntas sobre o aniversariante e a IA indica um presente principal e outras ideias pensadas para o valor que você escolher.',
+    'Se o tempo estiver curto, o quiz do Mimo Certo faz perguntas sobre o aniversariante e a IA indica um presente principal e outras ideias pensadas para o valor que você escolher.',
   ],
   preset: { occasion: 'Aniversário' },
   cta: 'Descobrir o presente de aniversário',
@@ -215,7 +215,7 @@ const guide: Guide = {
     },
     {
       q: 'Como escolher presente de aniversário quando estou sem ideia?',
-      a: 'Liste três coisas que a pessoa gosta de fazer no tempo livre e uma coisa que ela comentou querer. Se ainda faltar inspiração, o quiz gratuito do Presente Certo faz 11 perguntas sobre o aniversariante, leva cerca de 2 minutos e não pede cadastro. A IA sugere um presente principal e outras ideias pensadas para o orçamento que você escolher, com links para lojas conhecidas, além de uma mensagem para o cartão.',
+      a: 'Liste três coisas que a pessoa gosta de fazer no tempo livre e uma coisa que ela comentou querer. Se ainda faltar inspiração, o quiz gratuito do Mimo Certo faz 11 perguntas sobre o aniversariante, leva cerca de 2 minutos e não pede cadastro. A IA sugere um presente principal e outras ideias pensadas para o orçamento que você escolher, com links para lojas conhecidas, além de uma mensagem para o cartão.',
     },
   ],
   related: ['presente-criativo', 'presente-para-amiga', 'presente-para-namorado', 'presente-para-quem-tem-tudo'],

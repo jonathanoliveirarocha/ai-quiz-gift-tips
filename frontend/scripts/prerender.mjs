@@ -9,20 +9,10 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const dist = path.join(root, 'dist')
 const serverDir = path.join(root, 'dist-server')
 
-// URL pública usada no canonical, no sitemap e nas imagens de prévia.
-// Na Vercel, VERCEL_PROJECT_PRODUCTION_URL já vem preenchida com o domínio de produção (ou o domínio próprio, se houver).
-// Para forçar outro endereço, defina SITE_URL nas variáveis do projeto.
-function siteUrl() {
-  const fromEnv =
-    process.env.SITE_URL ||
-    (process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : '')
-  if (!fromEnv) {
-    if (process.env.VERCEL) throw new Error('[prerender] Defina SITE_URL: sem ela o canonical e as prévias de link ficam sem domínio.')
-    console.warn('[prerender] SITE_URL não definida; usando http://localhost:4173 (só para teste local).')
-    return 'http://localhost:4173'
-  }
-  return fromEnv.replace(/\/+$/, '')
-}
+// URL pública usada no canonical, no sitemap e nas imagens de prévia: o domínio do Mimo Certo.
+// Para testar localmente ou mudar de domínio (ex.: mimocerto.com.br), defina SITE_URL.
+const PRODUCTION_URL = 'https://mimocerto.vercel.app'
+const siteUrl = () => (process.env.SITE_URL || PRODUCTION_URL).replace(/\/+$/, '')
 
 const site = siteUrl()
 const { render, sitePages, headTags, routeKey, GUIDES, GUIDE_LINKS, LEGAL_LINKS, hasOwnerPlaceholders } = await import(pathToFileURL(path.join(serverDir, 'entry-server.js')).href)

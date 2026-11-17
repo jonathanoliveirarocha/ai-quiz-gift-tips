@@ -3,13 +3,13 @@ import { OWNER } from './owner.ts'
 
 const page: LegalPage = {
   slug: 'politica-de-privacidade',
-  title: 'Política de Privacidade | Presente Certo',
+  title: 'Política de Privacidade | Mimo Certo',
   description:
-    'Saiba quais dados o Presente Certo usa no quiz de presentes, para quê, por quanto tempo e como pedir a exclusão. Sem cadastro e sem cookies próprios.',
+    'Saiba quais dados o Mimo Certo usa no quiz de presentes, para quê, por quanto tempo e como pedir a exclusão. Sem cadastro e sem cookies próprios.',
   h1: 'Política de Privacidade',
   updated: '2026-11-17',
   intro:
-    'Esta política explica, em linguagem simples, quais dados o Presente Certo usa, para quê, com quem compartilha e por quanto tempo guarda. Em resumo: não há cadastro, o nome de quem vai ganhar o presente não sai do seu navegador e não guardamos os textos livres do quiz.',
+    'Esta política explica, em linguagem simples, quais dados o Mimo Certo usa, para quê, com quem compartilha e por quanto tempo guarda. Em resumo: não há cadastro, o nome de quem vai ganhar o presente não sai do seu navegador e não guardamos os textos livres do quiz.',
   sections: [
     {
       heading: 'Quem é o responsável',

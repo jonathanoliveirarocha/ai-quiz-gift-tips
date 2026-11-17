@@ -2,7 +2,7 @@ import type { Guide } from '../types.ts'
 
 const guide: Guide = {
   slug: 'presente-para-avo',
-  title: 'Presente para avó e avô: ideias com carinho | Presente Certo',
+  title: 'Presente para avó e avô: ideias com carinho | Mimo Certo',
   description:
     'Presente para avó ou avô: ideias de conforto, tecnologia simples e lembranças afetivas, com dicas para idosos. Faça o quiz grátis e encontre o ideal.',
   label: 'Presente para avó e avô',
@@ -12,7 +12,7 @@ const guide: Guide = {
   intro: [
     'Na hora de escolher um presente para avó ou avô, muita gente pensa logo em pantufa e porta-retrato. Funcionam, mas os avós de hoje são muito diferentes entre si: há quem faça hidroginástica três vezes por semana, quem converse com a família por vídeo todo dia e quem prefira o rádio e o jornal impresso.',
     'Por isso, este guia parte do jeito de cada um, e não só da idade. Você vai encontrar dicas para escolher com segurança e ideias divididas por perfil, que valem para aniversário, Natal, Dia dos Avós ou uma visita sem motivo especial.',
-    'Se quiser personalizar ainda mais, o quiz do Presente Certo leva em conta a idade, os gostos e o que ele ou ela já tem para sugerir um presente principal e outras ideias pensadas para o orçamento que você escolher.',
+    'Se quiser personalizar ainda mais, o quiz do Mimo Certo leva em conta a idade, os gostos e o que ele ou ela já tem para sugerir um presente principal e outras ideias pensadas para o orçamento que você escolher.',
   ],
   preset: { relationship: 'Avô ou avó' },
   cta: 'Descobrir o presente da vó ou do vô',
@@ -199,7 +199,7 @@ const guide: Guide = {
     },
     {
       q: 'Como escolher presente para avô ou avó com ajuda da IA?',
-      a: 'No quiz do Presente Certo, você escolhe a relação "Avô ou avó", informa a idade, a ocasião e o orçamento e conta do que a pessoa gosta e o que ela já tem. São 11 perguntas rápidas, e o resultado traz a sugestão principal, alternativas com links para lojas conhecidas, além de uma dica de entrega, sem cadastro e sem custo.',
+      a: 'No quiz do Mimo Certo, você escolhe a relação "Avô ou avó", informa a idade, a ocasião e o orçamento e conta do que a pessoa gosta e o que ela já tem. São 11 perguntas rápidas, e o resultado traz a sugestão principal, alternativas com links para lojas conhecidas, além de uma dica de entrega, sem cadastro e sem custo.',
     },
   ],
   related: ['presente-para-mae', 'presente-para-pai', 'presente-de-natal', 'presente-para-quem-tem-tudo'],

@@ -2,7 +2,7 @@ import type { Guide } from '../types.ts'
 
 const guide: Guide = {
   slug: 'presente-para-adolescente',
-  title: 'Presente para adolescente: ideias por gosto | Presente Certo',
+  title: 'Presente para adolescente: ideias por gosto | Mimo Certo',
   description:
     'Ideias de presente para adolescente de 13 a 17 anos, organizadas por gosto: games, música, arte, esporte e estilo. Faça o quiz grátis e acerte no presente.',
   label: 'Presente para adolescente',
@@ -203,7 +203,7 @@ const guide: Guide = {
     },
     {
       q: 'O quiz funciona para presente de adolescente?',
-      a: 'Funciona. Você responde sobre o jeito, os gostos, o sábado perfeito e o que a pessoa já tem, e a IA do Presente Certo sugere um presente principal e outras ideias pensadas para o orçamento escolhido, com links de busca em lojas conhecidas. O resultado vira um link que você pode mandar para outro parente opinar antes de comprar.',
+      a: 'Funciona. Você responde sobre o jeito, os gostos, o sábado perfeito e o que a pessoa já tem, e a IA do Mimo Certo sugere um presente principal e outras ideias pensadas para o orçamento escolhido, com links de busca em lojas conhecidas. O resultado vira um link que você pode mandar para outro parente opinar antes de comprar.',
     },
   ],
   related: ['presente-para-crianca', 'presente-de-aniversario', 'presente-de-natal', 'presente-ate-50-reais'],

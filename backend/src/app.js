@@ -21,7 +21,7 @@ app.use(express.json({ limit: '50kb' }));
 // O registro de cliques chega via navigator.sendBeacon como text/plain (evita preflight de CORS).
 app.use(express.text({ type: 'text/plain', limit: '10kb' }));
 
-app.get('/', (req, res) => res.json({ name: 'Presente Certo API', ok: true }));
+app.get('/', (req, res) => res.json({ name: 'Mimo Certo API', ok: true }));
 
 // Em função serverless não há "startup": garante a conexão (reaproveitada entre chamadas) antes de cada requisição.
 if (onVercel) {

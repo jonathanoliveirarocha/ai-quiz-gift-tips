@@ -2,7 +2,7 @@ import type { Guide } from '../types.ts'
 
 const guide: Guide = {
   slug: 'presente-para-crianca',
-  title: 'Presente para criança: ideias por idade | Presente Certo',
+  title: 'Presente para criança: ideias por idade | Mimo Certo',
   description:
     'Presente para criança por idade: brinquedos, jogos educativos e livros, com dicas de segurança como o selo do Inmetro. Faça o quiz grátis com IA e acerte.',
   label: 'Presente para criança',
@@ -12,7 +12,7 @@ const guide: Guide = {
   intro: [
     'Comprar um presente para criança é divertido, mas a prateleira de brinquedos engana: muita coisa chama atenção na loja e perde a graça em uma semana. O que funciona é combinar a fase de desenvolvimento com aquilo que a criança já adora fazer, seja montar, desenhar, correr ou ouvir histórias.',
     'Neste guia, as ideias estão separadas por faixa de idade e incluem brinquedos, jogos educativos, livros e materiais de arte. Antes delas, há um passo a passo de segurança, porque um presente bonito também precisa ser adequado para quem vai brincar.',
-    'Se você não conhece bem a criança, como um sobrinho distante ou o filho de um amigo, o quiz do Presente Certo ajuda a afinar a escolha a partir da idade, dos interesses e do orçamento.',
+    'Se você não conhece bem a criança, como um sobrinho distante ou o filho de um amigo, o quiz do Mimo Certo ajuda a afinar a escolha a partir da idade, dos interesses e do orçamento.',
   ],
   preset: {},
   cta: 'Descobrir o presente da criança',
@@ -203,7 +203,7 @@ const guide: Guide = {
     },
     {
       q: 'Como escolher presente para uma criança que não conheço bem?',
-      a: 'Pergunte aos pais a idade exata, o que a criança já tem e o tema preferido do momento. Livros, jogos de tabuleiro e kits de arte costumam ser apostas seguras. Se quiser ir além, o quiz do Presente Certo pede a faixa de idade, o orçamento e os interesses da criança e devolve sugestões com links para lojas conhecidas, de graça.',
+      a: 'Pergunte aos pais a idade exata, o que a criança já tem e o tema preferido do momento. Livros, jogos de tabuleiro e kits de arte costumam ser apostas seguras. Se quiser ir além, o quiz do Mimo Certo pede a faixa de idade, o orçamento e os interesses da criança e devolve sugestões com links para lojas conhecidas, de graça.',
     },
   ],
   related: ['presente-para-adolescente', 'presente-de-natal', 'presente-de-aniversario', 'presente-ate-50-reais'],

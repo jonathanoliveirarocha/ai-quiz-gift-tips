@@ -178,7 +178,7 @@ ideias-de-projeto/
 
 ---
 
-# Projeto: Presente Certo (site)
+# Projeto: Mimo Certo (site)
 
 Quiz de presentes com IA, pensado para celular. A pessoa responde até 11 perguntas sobre quem vai ganhar o presente, a IA indica o presente ideal e outras ideias, e cada ideia tem botões de compra com link de afiliado (Amazon e Shopee). O site é **enxuto de propósito**: home com título, texto curto, botão do quiz, os 3 passos e FAQ; rodapé com guias e páginas legais. Não adicionar recursos extras (listas, lembretes, faixas sazonais, rascunho) sem o dono pedir, nem textos de marketing que citem as lojas. Implementa o produto 9 de [ideias/black-friday-top-10-produtos.md](ideias/black-friday-top-10-produtos.md).
 

@@ -2,7 +2,7 @@ import type { Guide } from '../types.ts'
 
 const guide: Guide = {
   slug: 'presente-criativo',
-  title: 'Presente criativo: ideias fora do óbvio | Presente Certo',
+  title: 'Presente criativo: ideias fora do óbvio | Mimo Certo',
   description:
     'Ideias de presente criativo e diferente: experiências, personalizados e feitos à mão. Faça o quiz grátis e veja o que combina com quem vai ganhar.',
   label: 'Presente criativo',
@@ -206,7 +206,7 @@ const guide: Guide = {
     },
     {
       q: 'O quiz sugere presentes originais?',
-      a: 'Sugere. No quiz do Presente Certo você indica numa escala se prefere algo clássico ou inusitado e se imagina um objeto ou uma experiência. Também pode contar uma mania, um sonho ou uma piada interna da pessoa. A IA usa esses detalhes para propor ideias mais pessoais, pensadas para o orçamento que você escolher, com links de busca em lojas conhecidas.',
+      a: 'Sugere. No quiz do Mimo Certo você indica numa escala se prefere algo clássico ou inusitado e se imagina um objeto ou uma experiência. Também pode contar uma mania, um sonho ou uma piada interna da pessoa. A IA usa esses detalhes para propor ideias mais pessoais, pensadas para o orçamento que você escolher, com links de busca em lojas conhecidas.',
     },
   ],
   related: ['presente-para-quem-tem-tudo', 'presente-ate-50-reais', 'presente-para-namorado', 'presente-para-amiga'],

@@ -2,7 +2,7 @@ import type { Guide } from '../types.ts'
 
 const guide: Guide = {
   slug: 'presente-para-quem-tem-tudo',
-  title: 'Presente para quem tem tudo: o que dar | Presente Certo',
+  title: 'Presente para quem tem tudo: o que dar | Mimo Certo',
   description:
     'Não sabe o que dar para quem tem tudo? Veja ideias de experiências para viver em casa, consumíveis especiais e lembranças pessoais, e faça o quiz grátis.',
   label: 'Presente para quem tem tudo',
@@ -205,7 +205,7 @@ const guide: Guide = {
     },
     {
       q: 'Como o quiz evita sugerir o que a pessoa já tem?',
-      a: 'Uma das perguntas do quiz do Presente Certo é justamente o que a pessoa já tem ou não curte. Dá para escrever, por exemplo, que ela já tem cafeteira ou não bebe álcool. A IA leva isso em conta ao indicar o presente principal e as outras ideias, e você ainda pode puxar as sugestões para o lado das experiências na escala de estilo.',
+      a: 'Uma das perguntas do quiz do Mimo Certo é justamente o que a pessoa já tem ou não curte. Dá para escrever, por exemplo, que ela já tem cafeteira ou não bebe álcool. A IA leva isso em conta ao indicar o presente principal e as outras ideias, e você ainda pode puxar as sugestões para o lado das experiências na escala de estilo.',
     },
   ],
   related: ['presente-criativo', 'presente-para-pai', 'presente-para-mae', 'presente-para-avo'],

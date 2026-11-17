@@ -2,7 +2,7 @@ import type { Guide } from '../types.ts'
 
 const guide: Guide = {
   slug: 'presente-para-namorada',
-  title: 'Presente para namorada: ideias românticas | Presente Certo',
+  title: 'Presente para namorada: ideias românticas | Mimo Certo',
   description:
     'Ideias de presente para namorada para o Dia dos Namorados, o aniversário dela e outras datas: opções românticas, práticas e criativas. Veja como escolher.',
   label: 'Presente para namorada',
@@ -12,7 +12,7 @@ const guide: Guide = {
   intro: [
     'Um bom presente para namorada não precisa ser caro nem seguir o roteiro de flores e chocolate, a menos que ela adore os dois. O que conta, de verdade, é provar que você conhece a rotina dela, os planos que ela comenta e o jeito como ela gosta de passar o tempo.',
     'Nas próximas seções há cinco dicas de escolha, sugestões divididas entre românticas, culturais, práticas e por data, além de respostas sobre quanto gastar e o que dar no começo do namoro. Se ela curte games ou tecnologia, o guia de presente para namorado também traz ideias nessa linha que servem para qualquer pessoa.',
-    'E se faltar inspiração, descreva como ela é no quiz do Presente Certo e receba opções pensadas para o orçamento que você escolher.',
+    'E se faltar inspiração, descreva como ela é no quiz do Mimo Certo e receba opções pensadas para o orçamento que você escolher.',
   ],
   preset: { relationship: 'Par romântico', pronoun: 'ela' },
   cta: 'Descobrir o presente da minha namorada',

@@ -2,7 +2,7 @@ import type { Guide } from '../types.ts'
 
 const guide: Guide = {
   slug: 'presente-para-amigo',
-  title: 'Presente para amigo: ideias baratas e úteis | Presente Certo',
+  title: 'Presente para amigo: ideias baratas e úteis | Mimo Certo',
   description:
     'Ideias de presente para amigo por perfil e orçamento: opções baratas, presentes para o melhor amigo e para novas fases da vida. Veja dicas para escolher bem.',
   label: 'Presente para amigo',
@@ -12,7 +12,7 @@ const guide: Guide = {
   intro: [
     'Muita gente trava na hora de comprar presente para amigo porque vocês conversam sobre tudo, menos sobre o que ele gostaria de ganhar. A boa notícia é que essas conversas do dia a dia, sobre trabalho, rolês, séries ou projetos, estão cheias de pistas para um presente que ele vai usar de verdade.',
     'A seguir você encontra dicas para escolher, presentes baratos, ideias por perfil, sugestões para o melhor amigo e para momentos de mudança, como casa nova ou emprego novo. Os valores são faixas aproximadas e podem variar bastante entre as lojas.',
-    'Para ganhar tempo, você também pode responder ao quiz do Presente Certo, que combina o que você sabe sobre ele com o valor que pretende gastar.',
+    'Para ganhar tempo, você também pode responder ao quiz do Mimo Certo, que combina o que você sabe sobre ele com o valor que pretende gastar.',
   ],
   preset: { relationship: 'Amigo ou amiga', pronoun: 'ele' },
   cta: 'Descobrir o presente do meu amigo',
@@ -193,7 +193,7 @@ const guide: Guide = {
     },
     {
       q: 'O que dar para um amigo que diz não querer nada?',
-      a: 'Quase sempre, quem diz não querer nada já tem o básico e gosta de coisas bem específicas. Nesse caso, funcionam bem os consumíveis de qualidade, como um café especial ou petiscos diferentes, e os itens que viram programa, como um jogo novo para a turma. Para organizar as ideias, o quiz do Presente Certo tem uma etapa só para o que ele já tem ou não curte, o que ajuda a fugir do repetido.',
+      a: 'Quase sempre, quem diz não querer nada já tem o básico e gosta de coisas bem específicas. Nesse caso, funcionam bem os consumíveis de qualidade, como um café especial ou petiscos diferentes, e os itens que viram programa, como um jogo novo para a turma. Para organizar as ideias, o quiz do Mimo Certo tem uma etapa só para o que ele já tem ou não curte, o que ajuda a fugir do repetido.',
     },
     {
       q: 'Dar cartão-presente para amigo é uma boa ideia?',

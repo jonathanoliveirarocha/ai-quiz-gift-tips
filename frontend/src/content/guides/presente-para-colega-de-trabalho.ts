@@ -2,7 +2,7 @@ import type { Guide } from '../types.ts'
 
 const guide: Guide = {
   slug: 'presente-para-colega-de-trabalho',
-  title: 'Presente para colega de trabalho e chefe | Presente Certo',
+  title: 'Presente para colega de trabalho e chefe | Mimo Certo',
   description:
     'Ideias de presente para colega de trabalho, chefe e equipe, com dicas de etiqueta sobre valor e o que evitar. Escolha uma lembrança gentil e na medida certa.',
   label: 'Presente para colega de trabalho',
@@ -12,7 +12,7 @@ const guide: Guide = {
   intro: [
     'Escolher um presente para colega de trabalho pede equilíbrio: tem que ser gentil, mas não íntimo; útil, mas não impessoal; e dentro do valor que a equipe combinou. Vale para o aniversário de quem senta ao seu lado, a despedida de alguém que vai mudar de empresa, o fim de ano com o time ou aquela lembrança de agradecimento depois de um projeto puxado.',
     'Neste guia você encontra regras de etiqueta para não criar constrangimento, ideias por situação, de lembrancinhas para a equipe a presentes para o chefe, e respostas às dúvidas mais comuns sobre valor e sobre o que evitar.',
-    'Se ainda não souber o que combina com aquela pessoa específica, o quiz do Presente Certo pergunta sobre o jeito e os gostos dela e sugere ideias pensadas para o orçamento que você escolher.',
+    'Se ainda não souber o que combina com aquela pessoa específica, o quiz do Mimo Certo pergunta sobre o jeito e os gostos dela e sugere ideias pensadas para o orçamento que você escolher.',
   ],
   preset: { relationship: 'Colega de trabalho' },
   cta: 'Descobrir o presente do meu colega',
@@ -201,7 +201,7 @@ const guide: Guide = {
     },
     {
       q: 'Como escolher presente para um colega que conheço pouco?',
-      a: 'Observe a mesa de trabalho, o que a pessoa comenta no almoço e como ela passa o fim de semana. Se ainda faltar ideia, o quiz gratuito do Presente Certo ajuda: você responde 11 perguntas rápidas, como idade, jeito e o que evitar, e a IA sugere opções pensadas para o orçamento que você escolher, com links para lojas conhecidas, e uma sugestão de mensagem para o cartão.',
+      a: 'Observe a mesa de trabalho, o que a pessoa comenta no almoço e como ela passa o fim de semana. Se ainda faltar ideia, o quiz gratuito do Mimo Certo ajuda: você responde 11 perguntas rápidas, como idade, jeito e o que evitar, e a IA sugere opções pensadas para o orçamento que você escolher, com links para lojas conhecidas, e uma sugestão de mensagem para o cartão.',
     },
   ],
   related: ['presente-amigo-secreto', 'presente-ate-50-reais', 'presente-para-quem-tem-tudo', 'presente-de-natal'],

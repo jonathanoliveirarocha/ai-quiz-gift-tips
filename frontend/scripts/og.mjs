@@ -31,7 +31,9 @@ function findBrowser() {
 
 const esc = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
 
-const GIFT_ICON = `<svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13"/><path d="M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5A4.8 8 0 0 1 12 8a4.8 8 0 0 1 4.5-5 2.5 2.5 0 0 1 0 5"/></svg>`
+
+// Símbolo da marca: o mesmo presentinho do favicon.
+const LOGO_MARK = `data:image/svg+xml;base64,${Buffer.from(await readFile(path.join(pub, 'favicon.svg'), 'utf8')).toString('base64')}`
 
 const SPARKLES = Array.from({ length: 22 }, (_, i) => ({ x: (i * 37) % 100, y: (i * 53) % 100, s: 2 + (i % 3) }))
 
@@ -62,6 +64,7 @@ function ogHtml({ kicker, title, tagline, emoji, orbit }) {
   .brand-icon { width: 54px; height: 54px; border-radius: 17px; display: grid; place-items: center;
     background: linear-gradient(135deg, #ff7a6b, #ff4fb3 50%, #8b6cff); box-shadow: 0 10px 30px -6px rgba(255,79,179,.75); }
   .brand-icon svg { width: 28px; height: 28px; }
+  .brand-mark { width: 60px; height: 60px; filter: drop-shadow(0 10px 24px rgba(255,79,179,.55)); }
   em { font-style: italic; background: linear-gradient(135deg, #ff7a6b, #ff4fb3 50%, #8b6cff);
     -webkit-background-clip: text; background-clip: text; color: transparent; padding: .08em .2em .08em 0; margin-right: -.12em; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
   .main { margin-top: auto; margin-bottom: auto; }
@@ -84,7 +87,7 @@ function ogHtml({ kicker, title, tagline, emoji, orbit }) {
   ${SPARKLES.map((s) => `<i class="spark" style="left:${s.x}%;top:${s.y}%;width:${s.s}px;height:${s.s}px"></i>`).join('')}
   <div class="frame"></div>
   <div class="content">
-    <div class="brand"><span class="brand-icon">${GIFT_ICON}</span><span>Presente <em>Certo</em></span></div>
+    <div class="brand"><img class="brand-mark" src="${LOGO_MARK}" alt="" /><span>Mimo <em>Certo</em></span></div>
     <div class="main">
       <span class="kicker">${esc(kicker)}</span>
       <h1 id="title">${title}</h1>

@@ -69,7 +69,7 @@ export async function alert(kind, message) {
   try {
     const count = await hit(`alerta:${kind}`, 30 * 60 * 1000);
     if (count > 1) return;
-    const text = `🎁 Presente Certo: ${message}`;
+    const text = `🎁 Mimo Certo: ${message}`;
     if (TELEGRAM.test(config.alertWebhookUrl)) {
       const url = new URL(config.alertWebhookUrl);
       url.searchParams.set('text', text);

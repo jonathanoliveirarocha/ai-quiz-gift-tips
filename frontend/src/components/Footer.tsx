@@ -1,4 +1,5 @@
 import { GUIDE_LINKS } from '../content/guides/registry.ts'
+import Logo from './Logo.tsx'
 import { LEGAL_LINKS } from '../content/legal/registry.ts'
 import { AMAZON_DISCLOSURE } from '../content/stores.ts'
 
@@ -6,8 +7,8 @@ export default function Footer() {
   return (
     <footer className="footer">
       <nav className="footer-nav" aria-label="Guias de presente">
-        <a href="/" className="footer-brand">
-          🎁 Presente Certo
+        <a href="/" className="footer-brand" aria-label="Mimo Certo: ir para o início">
+          <Logo size={26} />
         </a>
         <ul>
           {GUIDE_LINKS.map((g) => (

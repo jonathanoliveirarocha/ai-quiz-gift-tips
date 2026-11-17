@@ -73,7 +73,7 @@ export default function Result({ data, name, isOwner, notice, onRestart, onEdit,
     const text = 'Descobri ideias de presente com a ajuda da IA 🎁 Dá uma olhada:'
     track('share', { resultId: id })
     if (navigator.share) {
-      await navigator.share({ title: 'Presente Certo', text, url }).catch(() => {})
+      await navigator.share({ title: 'Mimo Certo', text, url }).catch(() => {})
       return
     }
     await navigator.clipboard.writeText(`${text} ${url}`).catch(() => {})

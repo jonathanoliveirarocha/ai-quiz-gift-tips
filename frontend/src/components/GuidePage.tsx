@@ -78,7 +78,7 @@ export default function GuidePage({ guide, onStart }: { guide: Guide; onStart: (
         </div>
         <QuizCta guide={guide} onStart={onStart} />
         <p className="guide-updated">
-          Por Equipe Presente Certo · Atualizado em <time dateTime={guide.updated}>{formatDate(guide.updated)}</time> ·{' '}
+          Por Equipe Mimo Certo · Atualizado em <time dateTime={guide.updated}>{formatDate(guide.updated)}</time> ·{' '}
           <a href="/quem-somos">Como fazemos os guias</a>
         </p>
       </header>

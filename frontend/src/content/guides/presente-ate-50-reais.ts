@@ -2,7 +2,7 @@ import type { Guide } from '../types.ts'
 
 const guide: Guide = {
   slug: 'presente-ate-50-reais',
-  title: 'Presente até 50 reais: 20 ideias criativas | Presente Certo',
+  title: 'Presente até 50 reais: 20 ideias criativas | Mimo Certo',
   description:
     'Procurando presente até 50 reais? Veja ideias baratas e criativas que não parecem lembrancinha e faça o quiz grátis para achar o que combina com a pessoa.',
   label: 'Presente até 50 reais',
@@ -12,7 +12,7 @@ const guide: Guide = {
   intro: [
     'Dar um presente até 50 reais não significa dar qualquer coisa. Com esse valor dá para encontrar algo útil, bonito ou divertido, desde que a escolha parta de quem vai receber, e não só do preço. O que faz um presente barato ser lembrado é a sensação de que você prestou atenção.',
     'Aqui você encontra dicas para escolher, ideias organizadas por estilo e respostas para dúvidas comuns, como o que dar no amigo secreto ou como deixar uma lembrancinha barata com cara de especial. Os valores mudam de loja para loja e de época para época, então trate as faixas como estimativa.',
-    'Se ainda faltar uma pista, o quiz do Presente Certo pergunta sobre os gostos e a rotina da pessoa e sugere ideias pensadas para o limite de R$ 50.',
+    'Se ainda faltar uma pista, o quiz do Mimo Certo pergunta sobre os gostos e a rotina da pessoa e sugere ideias pensadas para o limite de R$ 50.',
   ],
   preset: { budget: 'Até R$ 50' },
   cta: 'Descobrir um presente até R$ 50',
@@ -204,7 +204,7 @@ const guide: Guide = {
     },
     {
       q: 'O quiz encontra presentes de até 50 reais?',
-      a: 'Ajuda a encontrar. No quiz do Presente Certo você escolhe a faixa de até R$ 50 e responde perguntas rápidas sobre idade, ocasião, gostos e o que a pessoa já tem. A IA indica um presente principal e outras ideias pensadas para esse limite, com links de busca em lojas conhecidas. Como os preços mudam, confira o valor final antes de comprar. É grátis, sem cadastro, e leva cerca de 2 minutos.',
+      a: 'Ajuda a encontrar. No quiz do Mimo Certo você escolhe a faixa de até R$ 50 e responde perguntas rápidas sobre idade, ocasião, gostos e o que a pessoa já tem. A IA indica um presente principal e outras ideias pensadas para esse limite, com links de busca em lojas conhecidas. Como os preços mudam, confira o valor final antes de comprar. É grátis, sem cadastro, e leva cerca de 2 minutos.',
     },
   ],
   related: ['presente-amigo-secreto', 'presente-criativo', 'presente-para-colega-de-trabalho', 'presente-de-natal'],

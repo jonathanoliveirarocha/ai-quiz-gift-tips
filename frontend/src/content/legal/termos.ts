@@ -3,25 +3,25 @@ import { OWNER } from './owner.ts'
 
 const page: LegalPage = {
   slug: 'termos-de-uso',
-  title: 'Termos de Uso | Presente Certo',
+  title: 'Termos de Uso | Mimo Certo',
   description:
-    'Regras de uso do Presente Certo: quem pode usar o quiz, limites das sugestões da IA, preços estimados, links de afiliado e seus direitos como consumidor.',
+    'Regras de uso do Mimo Certo: quem pode usar o quiz, limites das sugestões da IA, preços estimados, links de afiliado e seus direitos como consumidor.',
   h1: 'Termos de Uso',
   updated: '2026-11-17',
   intro:
-    'Estes termos explicam as regras para usar o Presente Certo. Ao usar o site e tocar no botão final do quiz, você concorda com eles e com a Política de Privacidade. Se não concordar, não use o serviço.',
+    'Estes termos explicam as regras para usar o Mimo Certo. Ao usar o site e tocar no botão final do quiz, você concorda com eles e com a Política de Privacidade. Se não concordar, não use o serviço.',
   sections: [
     {
       heading: 'Quem oferece o serviço',
       paragraphs: [
-        `O Presente Certo é mantido por ${OWNER.name} (${OWNER.document}), de ${OWNER.city}. Contato: ${OWNER.email}.`,
+        `O Mimo Certo é mantido por ${OWNER.name} (${OWNER.document}), de ${OWNER.city}. Contato: ${OWNER.email}.`,
       ],
     },
     {
-      heading: 'O que é o Presente Certo',
+      heading: 'O que é o Mimo Certo',
       paragraphs: [
         'É um site gratuito que sugere presentes com inteligência artificial. Você responde 11 perguntas sobre quem vai ganhar, e o site mostra um presente principal, outras ideias e botões para procurar cada sugestão em lojas parceiras. Também publicamos guias de presentes por pessoa e ocasião.',
-        'Não há cadastro, login nem pagamento. O Presente Certo não vende produtos: a compra acontece na loja.',
+        'Não há cadastro, login nem pagamento. O Mimo Certo não vende produtos: a compra acontece na loja.',
       ],
     },
     {
@@ -67,7 +67,7 @@ const page: LegalPage = {
     {
       heading: 'Sites de terceiros',
       paragraphs: [
-        'Ao clicar em um botão de loja, você sai do Presente Certo. A venda, o pagamento, a entrega, a troca e a garantia ficam a cargo da loja, que tem termos, política de privacidade e cookies próprios. Não controlamos o conteúdo nem as ofertas dessas lojas.',
+        'Ao clicar em um botão de loja, você sai do Mimo Certo. A venda, o pagamento, a entrega, a troca e a garantia ficam a cargo da loja, que tem termos, política de privacidade e cookies próprios. Não controlamos o conteúdo nem as ofertas dessas lojas.',
       ],
     },
     {

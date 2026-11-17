@@ -1,10 +1,10 @@
-export const SITE_NAME = 'Presente Certo'
+export const SITE_NAME = 'Mimo Certo'
 
 export const HOME = {
-  title: 'Ideias de presente com IA: quiz grátis | Presente Certo',
+  title: 'Ideias de presente com IA: quiz grátis | Mimo Certo',
   description:
     'Não sabe o que dar de presente? Responda perguntas rápidas sobre a pessoa e a IA indica o presente certo, pensado para o seu orçamento. Grátis e sem cadastro.',
-  ogTitle: 'Presente Certo: a IA descobre o presente ideal',
+  ogTitle: 'Mimo Certo: a IA descobre o presente ideal',
   ogDescription: 'Responda perguntas rápidas sobre a pessoa e a IA indica o presente certo. Grátis, em 2 minutos e sem cadastro.',
   updated: '2026-11-17',
 }
@@ -15,7 +15,7 @@ export const HOME_FAQ: { q: string; a: string }[] = [
     a: 'Você responde perguntas rápidas sobre a pessoa: relação, idade, ocasião, orçamento, jeito e gostos. As que não souber, pode pular. A IA cruza tudo isso, indica um presente principal, explica por que ele combina e sugere outras ideias pensadas para o mesmo orçamento.',
   },
   {
-    q: 'O Presente Certo é grátis? Como vocês ganham dinheiro?',
+    q: 'O Mimo Certo é grátis? Como vocês ganham dinheiro?',
     a: 'É grátis e não pede cadastro, e-mail nem cartão. Os links para comprar são links de afiliado: se você comprar por eles, a loja pode pagar uma comissão ao site, sem nenhum custo extra para você. Os preços mostrados são estimativas; confira o valor final na loja.',
   },
   {

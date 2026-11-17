@@ -1,4 +1,4 @@
-# Diagnóstico do Presente Certo
+# Diagnóstico do Mimo Certo
 
 O que impede o site de gerar receita sozinho, visto por cada setor de uma empresa. 🟥 bloqueia a operação; 🟨 reduz a receita. Os números marcados como hipótese são estimativas sem dado real.
 
@@ -76,7 +76,7 @@ O que impede o site de gerar receita sozinho, visto por cada setor de uma empres
   - O envio de dados ao exterior também precisa de um mecanismo previsto na LGPD.
 - 🟨 **O link da Shopee é montado à mão.** O formato não é oficial e pode não pagar comissão, ou ser tratado como link alterado, o que põe a conta em risco.
 - 🟨 **Publicidade e defesa do consumidor.** O aviso de afiliado é fraco: diz "alguns links" quando todos são, e fica só no rodapé. O site não tem termos de uso. A recomendação da IA pode ignorar uma alergia ou sugerir algo impróprio para criança, e não há filtro no código, só a instrução no prompt.
-- 🟨 **A marca é fraca juridicamente.** "Presente Certo" é descritiva, difícil de registrar, e ninguém pesquisou se já existe no INPI. Trocar de nome depois faria perder o tráfego acumulado.
+- 🟨 **A marca é fraca juridicamente.** "Mimo Certo" é descritiva, difícil de registrar, e ninguém pesquisou se já existe no INPI. Trocar de nome depois faria perder o tráfego acumulado.
 
 ## Financeiro
 - **Mídia paga não se paga hoje (hipótese).**

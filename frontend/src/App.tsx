@@ -1,7 +1,7 @@
 import { useEffect, useState, type MouseEvent } from 'react'
 import { AnimatePresence, MotionConfig, motion } from 'motion/react'
-import { Gift } from 'lucide-react'
 import Background from './components/Background.tsx'
+import Logo from './components/Logo.tsx'
 import Landing from './components/Landing.tsx'
 import GuidePage from './components/GuidePage.tsx'
 import LegalPageView from './components/LegalPageView.tsx'
@@ -205,11 +205,8 @@ export default function App({ path }: { path: string }) {
       <Background />
       <div className="app">
         <header className="topbar">
-          <a className="brand" href="/" onClick={onBrandClick} aria-label="Presente Certo: ir para o início">
-            <span className="brand-icon">
-              <Gift size={18} strokeWidth={2.4} />
-            </span>
-            Presente <em>Certo</em>
+          <a className="brand" href="/" onClick={onBrandClick} aria-label="Mimo Certo: ir para o início">
+            <Logo />
           </a>
         </header>
 

@@ -2,7 +2,7 @@ import type { Guide } from '../types.ts'
 
 const guide: Guide = {
   slug: 'presente-para-pai',
-  title: 'Presente para pai: ideias úteis e criativas | Presente Certo',
+  title: 'Presente para pai: ideias úteis e criativas | Mimo Certo',
   description:
     'Presente para pai que diz não querer nada? Veja ideias por perfil para o Dia dos Pais e o aniversário, com dicas para acertar. Faça o quiz grátis com IA.',
   label: 'Presente para pai',
@@ -12,7 +12,7 @@ const guide: Guide = {
   intro: [
     'Quem já perguntou "pai, o que você quer ganhar?" conhece a resposta: "nada, não precisa". Encontrar um presente para pai fica mais simples quando você troca a pergunta direta pela observação. Repare no que ele faz no domingo, no assunto que puxa no almoço e na ferramenta que vive pedindo emprestada.',
     'As ideias abaixo estão separadas por perfil e servem para o Dia dos Pais, para o aniversário ou para qualquer outra ocasião. São tipos de presente, sem marcas, para ajustar ao estilo e ao bolso dele. No fim, há respostas para as dúvidas mais comuns de quem está nessa busca.',
-    'Se quiser um empurrão, o quiz do Presente Certo pergunta sobre o jeito, os gostos e o sábado perfeito do seu pai, e a IA indica um presente principal e outras ideias pensadas para o valor que você escolher, com links para lojas conhecidas.',
+    'Se quiser um empurrão, o quiz do Mimo Certo pergunta sobre o jeito, os gostos e o sábado perfeito do seu pai, e a IA indica um presente principal e outras ideias pensadas para o valor que você escolher, com links para lojas conhecidas.',
   ],
   preset: { relationship: 'Pai', pronoun: 'ele' },
   cta: 'Descobrir o presente do meu pai',
@@ -199,7 +199,7 @@ const guide: Guide = {
     },
     {
       q: 'Como acertar o presente do pai sem perguntar a ele?',
-      a: 'Converse sobre os assuntos de que ele gosta, observe o que ele pesquisa ou comenta e consulte a mãe ou os irmãos. Se ainda faltar uma direção, o quiz do Presente Certo usa as suas respostas sobre ele para sugerir um presente principal e alternativas pensadas para o orçamento que você escolher, sem pedir cadastro. O resultado vira um link, prático para mostrar aos irmãos antes de dividir o valor.',
+      a: 'Converse sobre os assuntos de que ele gosta, observe o que ele pesquisa ou comenta e consulte a mãe ou os irmãos. Se ainda faltar uma direção, o quiz do Mimo Certo usa as suas respostas sobre ele para sugerir um presente principal e alternativas pensadas para o orçamento que você escolher, sem pedir cadastro. O resultado vira um link, prático para mostrar aos irmãos antes de dividir o valor.',
     },
   ],
   related: ['presente-para-mae', 'presente-para-quem-tem-tudo', 'presente-de-aniversario', 'presente-ate-50-reais'],

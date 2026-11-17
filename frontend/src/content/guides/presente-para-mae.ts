@@ -2,7 +2,7 @@ import type { Guide } from '../types.ts'
 
 const guide: Guide = {
   slug: 'presente-para-mae',
-  title: 'Presente para mãe: ideias que ela vai usar | Presente Certo',
+  title: 'Presente para mãe: ideias que ela vai usar | Mimo Certo',
   description:
     'Presente para mãe sem erro: ideias por estilo e orçamento para o Dia das Mães e o aniversário, com dicas práticas. Faça o quiz grátis e descubra o ideal.',
   label: 'Presente para mãe',
@@ -12,7 +12,7 @@ const guide: Guide = {
   intro: [
     'Escolher um presente para mãe parece fácil até você parar na frente da vitrine. Ela diz que não precisa de nada, já tem perfume de sobra e guarda as coisas "boas demais para usar". O caminho é sair do presente genérico e olhar para a rotina dela: o que faz quando sobra um tempo, o que reclama que está velho, o que comenta com brilho no olho.',
     'Aqui você encontra dicas para escolher com calma e ideias organizadas por perfil, que servem para o Dia das Mães, para o aniversário ou para um agrado sem data marcada, em vários estilos e faixas de gasto.',
-    'Se a dúvida continuar, o quiz do Presente Certo faz 11 perguntas rápidas sobre ela, e a IA sugere um presente principal e outras ideias pensadas para o orçamento que você definir, com links para lojas conhecidas, e uma mensagem para o cartão.',
+    'Se a dúvida continuar, o quiz do Mimo Certo faz 11 perguntas rápidas sobre ela, e a IA sugere um presente principal e outras ideias pensadas para o orçamento que você definir, com links para lojas conhecidas, e uma mensagem para o cartão.',
   ],
   preset: { relationship: 'Mãe', pronoun: 'ela' },
   cta: 'Descobrir o presente da minha mãe',
@@ -199,7 +199,7 @@ const guide: Guide = {
     },
     {
       q: 'Como descobrir o presente ideal para minha mãe sem perguntar?',
-      a: 'Preste atenção no que ela comenta no dia a dia, observe o que está gasto em casa e converse com irmãos ou amigas próximas dela. Para ter um ponto de partida, responda ao quiz do Presente Certo: em cerca de 2 minutos você conta como ela é e quanto quer gastar, e recebe uma sugestão principal, outras ideias e uma mensagem pronta para o cartão.',
+      a: 'Preste atenção no que ela comenta no dia a dia, observe o que está gasto em casa e converse com irmãos ou amigas próximas dela. Para ter um ponto de partida, responda ao quiz do Mimo Certo: em cerca de 2 minutos você conta como ela é e quanto quer gastar, e recebe uma sugestão principal, outras ideias e uma mensagem pronta para o cartão.',
     },
   ],
   related: ['presente-para-pai', 'presente-para-avo', 'presente-de-aniversario', 'presente-para-quem-tem-tudo'],

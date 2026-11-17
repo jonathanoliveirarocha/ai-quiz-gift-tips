@@ -2,7 +2,7 @@ import type { Guide } from '../types.ts'
 
 const guide: Guide = {
   slug: 'presente-para-namorado',
-  title: 'Presente para namorado: ideias criativas | Presente Certo',
+  title: 'Presente para namorado: ideias criativas | Mimo Certo',
   description:
     'Procurando presente para namorado? Veja ideias criativas por estilo, opções para o Dia dos Namorados e o aniversário de namoro, e dicas para acertar.',
   label: 'Presente para namorado',
@@ -12,7 +12,7 @@ const guide: Guide = {
   intro: [
     'Escolher um presente para namorado parece fácil até a data chegar e a lista de ideias se resumir a perfume, carteira e camiseta. Nada contra os clássicos, mas o que costuma marcar é o presente que mostra atenção: ao que ele comenta, ao que ele faz quando tem tempo livre e ao que vocês já viveram juntos.',
     'Neste guia você vai ver dicas práticas para decidir, ideias separadas por estilo, de lembranças personalizadas a itens que viram programa a dois, e o que fazer quando a data é o aniversário de namoro ou quando o orçamento está apertado.',
-    'Se mesmo assim bater a dúvida, vale testar o quiz do Presente Certo: você conta como ele é, e a IA devolve sugestões pensadas para o orçamento que você escolher.',
+    'Se mesmo assim bater a dúvida, vale testar o quiz do Mimo Certo: você conta como ele é, e a IA devolve sugestões pensadas para o orçamento que você escolher.',
   ],
   preset: { relationship: 'Par romântico', pronoun: 'ele' },
   cta: 'Descobrir o presente do meu namorado',
@@ -189,7 +189,7 @@ const guide: Guide = {
     },
     {
       q: 'Existe um jeito rápido de ter ideias de presente para o namorado?',
-      a: 'Sim. Responder a algumas perguntas sobre ele, como idade, gostos, orçamento e o que ele já tem, ajuda a filtrar as opções. É essa a lógica do quiz do Presente Certo: 11 perguntas, cerca de 2 minutos, grátis e sem cadastro. No fim, a IA aponta a melhor aposta para ele e mais algumas alternativas pensadas para o orçamento que você escolher, com links para lojas conhecidas.',
+      a: 'Sim. Responder a algumas perguntas sobre ele, como idade, gostos, orçamento e o que ele já tem, ajuda a filtrar as opções. É essa a lógica do quiz do Mimo Certo: 11 perguntas, cerca de 2 minutos, grátis e sem cadastro. No fim, a IA aponta a melhor aposta para ele e mais algumas alternativas pensadas para o orçamento que você escolher, com links para lojas conhecidas.',
     },
   ],
   related: ['presente-para-namorada', 'presente-criativo', 'presente-de-aniversario', 'presente-para-quem-tem-tudo'],

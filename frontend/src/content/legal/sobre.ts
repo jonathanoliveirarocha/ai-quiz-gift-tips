@@ -3,13 +3,13 @@ import { OWNER } from './owner.ts'
 
 const page: LegalPage = {
   slug: 'quem-somos',
-  title: 'Quem somos | Presente Certo',
+  title: 'Quem somos | Mimo Certo',
   description:
-    'Conheça quem está por trás do Presente Certo, como a IA escolhe as sugestões de presente, como o site ganha dinheiro e como falar com a gente.',
+    'Conheça quem está por trás do Mimo Certo, como a IA escolhe as sugestões de presente, como o site ganha dinheiro e como falar com a gente.',
   h1: 'Quem somos',
   updated: '2026-11-17',
   intro:
-    'O Presente Certo é um site gratuito que ajuda você a escolher um presente que combine com quem vai ganhar, em poucos minutos e sem cadastro.',
+    'O Mimo Certo é um site gratuito que ajuda você a escolher um presente que combine com quem vai ganhar, em poucos minutos e sem cadastro.',
   sections: [
     {
       heading: 'Quem está por trás',

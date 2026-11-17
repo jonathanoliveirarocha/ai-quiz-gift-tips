@@ -2,7 +2,7 @@ import type { Guide } from '../types.ts'
 
 const guide: Guide = {
   slug: 'presente-para-amiga',
-  title: 'Presente para amiga: ideias para todo bolso | Presente Certo',
+  title: 'Presente para amiga: ideias para todo bolso | Mimo Certo',
   description:
     'Encontre um presente para amiga que tenha a cara dela: mimos baratos, ideias para a melhor amiga, sugestões por estilo e dicas práticas para escolher bem.',
   label: 'Presente para amiga',
@@ -12,7 +12,7 @@ const guide: Guide = {
   intro: [
     'Na busca por um presente para amiga, você sai na frente: provavelmente já sabe muita coisa sobre ela, como as manias, as séries favoritas, o que ela pede no bar e aquilo que ela vive dizendo que vai começar. O desafio é transformar essa intimidade num presente que ela vá usar e lembrar.',
     'Este guia reúne dicas para escolher, mimos baratos, ideias para a melhor amiga, sugestões por estilo e itens que viram programa para curtirem juntas. Os valores citados são faixas aproximadas, só para orientar, porque os preços mudam bastante de uma loja para outra.',
-    'Quando a dúvida for grande, como no caso de uma amiga recente, dá para usar o quiz do Presente Certo para cruzar os gostos dela com o seu orçamento.',
+    'Quando a dúvida for grande, como no caso de uma amiga recente, dá para usar o quiz do Mimo Certo para cruzar os gostos dela com o seu orçamento.',
   ],
   preset: { relationship: 'Amigo ou amiga', pronoun: 'ela' },
   cta: 'Descobrir o presente da minha amiga',
@@ -201,7 +201,7 @@ const guide: Guide = {
     },
     {
       q: 'Tem algum jeito de organizar as ideias de presente para a minha amiga?',
-      a: 'Uma forma prática é anotar o que você sabe sobre ela: idade, gostos, como passa o fim de semana e o que já tem. O quiz do Presente Certo organiza essas informações em 11 perguntas, leva cerca de 2 minutos, não pede cadastro e mostra a sugestão mais alinhada com ela, além de alternativas pensadas para o valor que você escolheu, com links para lojas conhecidas.',
+      a: 'Uma forma prática é anotar o que você sabe sobre ela: idade, gostos, como passa o fim de semana e o que já tem. O quiz do Mimo Certo organiza essas informações em 11 perguntas, leva cerca de 2 minutos, não pede cadastro e mostra a sugestão mais alinhada com ela, além de alternativas pensadas para o valor que você escolheu, com links para lojas conhecidas.',
     },
   ],
   related: ['presente-para-amigo', 'presente-ate-50-reais', 'presente-amigo-secreto', 'presente-de-aniversario'],
