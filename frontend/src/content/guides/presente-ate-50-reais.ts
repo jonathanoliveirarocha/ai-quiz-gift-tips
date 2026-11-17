@@ -184,7 +184,7 @@ const guide: Guide = {
     },
     {
       q: 'O quiz encontra presentes de até 50 reais?',
-      a: 'Encontra. No quiz do Presente Certo você escolhe a faixa de até R$ 50 e responde perguntas rápidas sobre idade, ocasião, gostos e o que a pessoa já tem. A IA indica um presente principal e outras ideias dentro desse limite, com links de busca para lojas como Amazon, Mercado Livre e Magalu. É grátis, sem cadastro, e leva cerca de 2 minutos.',
+      a: 'Encontra. No quiz do Presente Certo você escolhe a faixa de até R$ 50 e responde perguntas rápidas sobre idade, ocasião, gostos e o que a pessoa já tem. A IA indica um presente principal e outras ideias dentro desse limite, com links de busca para lojas como Amazon e Shopee. É grátis, sem cadastro, e leva cerca de 2 minutos.',
     },
   ],
   related: ['presente-amigo-secreto', 'presente-criativo', 'presente-para-colega-de-trabalho', 'presente-de-natal'],

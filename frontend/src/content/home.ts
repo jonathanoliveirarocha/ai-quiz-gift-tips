@@ -1,3 +1,5 @@
+import { STORE_LIST } from './stores.ts'
+
 export const SITE_NAME = 'Presente Certo'
 
 export const HOME = {
@@ -20,7 +22,7 @@ export const HOME_FAQ: { q: string; a: string }[] = [
   },
   {
     q: 'Em quais lojas posso comprar o presente sugerido?',
-    a: 'Cada sugestão traz links de busca para lojas conhecidas, como Amazon, Mercado Livre, Magalu, Americanas, Shopee e KaBuM!. Os preços mostrados são estimativas; o valor final, o frete e o prazo de entrega você confere na própria loja antes de comprar.',
+    a: `Cada sugestão traz botões que abrem a busca do presente nas lojas ${STORE_LIST}. Os preços mostrados são estimativas; o valor final, o frete e o prazo de entrega você confere na própria loja antes de comprar.`,
   },
   {
     q: 'Posso compartilhar o resultado com outra pessoa?',

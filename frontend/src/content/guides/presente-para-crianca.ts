@@ -183,7 +183,7 @@ const guide: Guide = {
     },
     {
       q: 'Como escolher presente para uma criança que não conheço bem?',
-      a: 'Pergunte aos pais a idade exata, o que a criança já tem e o tema preferido do momento. Livros, jogos de tabuleiro e kits de arte costumam ser apostas seguras. Se quiser ir além, o quiz do Presente Certo pede a faixa de idade, o orçamento e os interesses da criança e devolve sugestões com links para lojas como Amazon, Magalu e Shopee, de graça.',
+      a: 'Pergunte aos pais a idade exata, o que a criança já tem e o tema preferido do momento. Livros, jogos de tabuleiro e kits de arte costumam ser apostas seguras. Se quiser ir além, o quiz do Presente Certo pede a faixa de idade, o orçamento e os interesses da criança e devolve sugestões com links para lojas como Amazon e Shopee, de graça.',
     },
   ],
   related: ['presente-para-adolescente', 'presente-de-natal', 'presente-de-aniversario', 'presente-ate-50-reais'],

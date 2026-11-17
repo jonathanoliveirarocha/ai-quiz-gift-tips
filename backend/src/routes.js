@@ -7,7 +7,7 @@ import { QuizResult, Product, Click } from './models.js';
 import { parseAnswers, parseExclude } from './services/answers.js';
 import { generateWithGemini } from './services/gemini.js';
 import { generateDemo } from './services/demo.js';
-import { normalizeResult } from './services/result.js';
+import { normalizeResult, withStoreLinks } from './services/result.js';
 import { matchCatalog, normalizeTag, serializeProduct } from './services/catalog.js';
 import { STORE_IDS } from './services/stores.js';
 
@@ -31,7 +31,7 @@ const serializeResult = (doc) => ({
   mode: publicMode(doc.mode),
   createdAt: doc.createdAt,
   answers: doc.answers,
-  result: doc.result,
+  result: withStoreLinks(doc.result),
   catalog: doc.catalog ?? [],
 });
 

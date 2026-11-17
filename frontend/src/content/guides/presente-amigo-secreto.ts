@@ -172,7 +172,7 @@ const guide: Guide = {
     },
     {
       q: 'Como descobrir rápido o que dar de amigo secreto?',
-      a: 'Uma forma rápida é responder ao quiz gratuito do Presente Certo. São 11 perguntas sobre o sorteado, como idade, jeito, gostos e o que evitar, e em cerca de 2 minutos a IA indica um presente principal e outras ideias dentro do orçamento, com links para lojas como Amazon, Mercado Livre e Magalu. Não é preciso fazer cadastro.',
+      a: 'Uma forma rápida é responder ao quiz gratuito do Presente Certo. São 11 perguntas sobre o sorteado, como idade, jeito, gostos e o que evitar, e em cerca de 2 minutos a IA indica um presente principal e outras ideias dentro do orçamento, com links para lojas como Amazon e Shopee. Não é preciso fazer cadastro.',
     },
   ],
   related: ['presente-ate-50-reais', 'presente-para-colega-de-trabalho', 'presente-de-natal', 'presente-criativo'],

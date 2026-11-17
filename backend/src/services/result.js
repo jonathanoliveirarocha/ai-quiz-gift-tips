@@ -22,7 +22,22 @@ function normalizeItem(item) {
     priceMin,
     priceMax,
     query,
-    stores: buildStoreLinks(item?.stores, query),
+    stores: buildStoreLinks(query),
+  };
+}
+
+const relink = (item) => (item ? { ...item, stores: buildStoreLinks(str(item.query, 80, str(item.title, 120, 'presente'))) } : item);
+
+/**
+ * Remonta os botões das lojas de um resultado já salvo. Assim, links antigos seguem as lojas
+ * ativas e as tags de afiliado atuais (ex.: uma tag da Amazon criada depois do resultado).
+ */
+export function withStoreLinks(result) {
+  if (!result) return result;
+  return {
+    ...result,
+    idealGift: relink(result.idealGift),
+    suggestions: (result.suggestions ?? []).map(relink),
   };
 }
 

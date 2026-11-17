@@ -183,7 +183,7 @@ const guide: Guide = {
     },
     {
       q: 'O quiz funciona para presente de adolescente?',
-      a: 'Funciona. Você responde sobre o jeito, os gostos, o sábado perfeito e o que a pessoa já tem, e a IA do Presente Certo sugere um presente principal e outras ideias dentro do orçamento escolhido, com links para lojas como Amazon, Shopee e KaBuM!. O resultado vira um link que você pode mandar para outro parente opinar antes de comprar.',
+      a: 'Funciona. Você responde sobre o jeito, os gostos, o sábado perfeito e o que a pessoa já tem, e a IA do Presente Certo sugere um presente principal e outras ideias dentro do orçamento escolhido, com links para lojas como Amazon e Shopee. O resultado vira um link que você pode mandar para outro parente opinar antes de comprar.',
     },
   ],
   related: ['presente-para-crianca', 'presente-de-aniversario', 'presente-de-natal', 'presente-ate-50-reais'],

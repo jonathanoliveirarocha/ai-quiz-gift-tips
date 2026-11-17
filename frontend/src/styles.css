@@ -1265,8 +1265,6 @@ input[type='range']::-moz-range-thumb {
 .store-americanas { --store: #ff2b45; }
 .store-shopee { --store: #ee4d2d; }
 .store-kabum { --store: #ff6500; }
-.store-google_shopping { --store: #4c8bf5; }
-.store-google { --store: #34a853; }
 
 .extras {
   display: grid;

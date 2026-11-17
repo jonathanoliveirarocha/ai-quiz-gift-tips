@@ -24,6 +24,11 @@ export const config = {
   embeddedMongo: env('MONGODB_EMBEDDED', 'true') !== 'false' && !process.env.VERCEL,
   embeddedDbPath: path.join(backendDir, '.data', 'db'),
   adminToken: env('ADMIN_TOKEN'),
+  // Lojas com botão em cada sugestão, na ordem dos botões. Para incluir o Mercado Livre: amazon,shopee,mercadolivre
+  activeStores: env('ACTIVE_STORES', 'amazon,shopee')
+    .split(',')
+    .map((id) => id.trim().toLowerCase())
+    .filter(Boolean),
   amazonTag: env('AMAZON_ASSOCIATE_TAG'),
   affiliateTemplate: (storeId) => env(`AFFILIATE_TEMPLATE_${storeId.toUpperCase()}`),
 };

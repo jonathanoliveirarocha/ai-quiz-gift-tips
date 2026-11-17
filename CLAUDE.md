@@ -192,18 +192,19 @@ Quiz de presentes com IA. A pessoa responde 11 perguntas sobre quem vai ganhar o
 - `frontend/` (React + TypeScript + Vite, `motion`, `lucide-react`) chama a API em `VITE_API_URL` + `/api/...`. `backend/` (Node + JavaScript ESM, Express 5, Mongoose, `@google/genai`) libera as origens de `CORS_ORIGIN`.
 - `backend/src/app.js` é o app Express, exportado como default (entrypoint da Vercel). `backend/src/local.js` só sobe o servidor localmente.
 - `backend/src/services/gemini.js`: prompt do sistema, schema JSON da resposta e chamada ao `gemini-3.5-flash-lite` (repete automaticamente em erros 503/500).
-- `backend/src/services/stores.js`: **única fonte dos links das lojas**. A IA só escolhe o termo de busca e as lojas de uma lista fixa (Amazon, Mercado Livre, Magalu, Americanas, Shopee, KaBuM!, Google Shopping, Google); o backend monta as URLs. Nunca use URL vinda da IA.
+- `backend/src/services/stores.js`: **única fonte dos links das lojas**. A IA só escolhe o termo de busca; toda sugestão ganha um botão para cada loja de `ACTIVE_STORES` (padrão: `amazon,shopee`; o Mercado Livre já está pronto, basta incluir `mercadolivre`). O backend monta as URLs, inclusive ao reabrir resultados salvos (`withStoreLinks`). Nunca use URL vinda da IA. Ao ativar uma loja, adicione o nome também em `frontend/src/content/stores.ts` (textos do site).
 - `backend/src/db.js`: conecta em `MONGODB_URI` (local ou Atlas). Se o DNS local recusar consultas SRV do Atlas, tenta de novo com DNS públicos. Sem MongoDB disponível, sobe um MongoDB embutido em `backend/.data` (o primeiro start baixa cerca de 780 MB).
 - Coleções: `quizresults` (respostas + resultado, base do link `/r/:id`), `products` (catálogo de parceiros/afiliados) e `clicks` (cliques nas lojas).
 
 ## Afiliados (preparado para o futuro)
+Passo a passo para gerar os links de Amazon, Shopee e Mercado Livre: [AFILIADOS.md](AFILIADOS.md).
 - **Amazon:** `AMAZON_ASSOCIATE_TAG` adiciona `&tag=` em todos os links.
 - **Outras lojas e redes** (Awin, Lomadee etc.): `AFFILIATE_TEMPLATE_<LOJA>` com `{url}` ou `{query}` transforma o link em deep link de afiliado.
 - **Catálogo próprio:** produtos com link de afiliado, imagem e preço aparecem em "Ofertas selecionadas" quando as tags combinam com o resultado. Para cadastrar: `npm run import:catalog -- arquivo.json` (formato em `backend/data/catalogo-exemplo.json`) ou a API `/api/admin/products` com o header `x-admin-token` (defina `ADMIN_TOKEN`). `GET /api/admin/stats` mostra cliques por loja.
 - Links de afiliado recebem `rel="sponsored"`, e o rodapé avisa que pode haver comissão (exigência do CONAR).
 
 ## Deploy na Vercel (dois projetos)
-- **Backend:** projeto com Root Directory `backend`. A Vercel detecta o Express sozinha por `src/app.js`, sem `vercel.json`. Variáveis obrigatórias: `GEMINI_API_KEY`, `MONGODB_URI` (Atlas; o MongoDB embutido fica desativado na Vercel) e `CORS_ORIGIN` com o domínio do frontend (aceita `*`, ex.: `https://meu-front.vercel.app,https://meu-front-*.vercel.app`). Opcionais: `GEMINI_MODEL`, `ADMIN_TOKEN`, `AMAZON_ASSOCIATE_TAG`, `AFFILIATE_TEMPLATE_*`.
+- **Backend:** projeto com Root Directory `backend`. A Vercel detecta o Express sozinha por `src/app.js`, sem `vercel.json`. Variáveis obrigatórias: `GEMINI_API_KEY`, `MONGODB_URI` (Atlas; o MongoDB embutido fica desativado na Vercel) e `CORS_ORIGIN` com o domínio do frontend (aceita `*`, ex.: `https://meu-front.vercel.app,https://meu-front-*.vercel.app`). Opcionais: `GEMINI_MODEL`, `ADMIN_TOKEN`, `ACTIVE_STORES`, `AMAZON_ASSOCIATE_TAG`, `AFFILIATE_TEMPLATE_*`.
 - **Frontend:** projeto com Root Directory `frontend` (preset Vite). Variável obrigatória: `VITE_API_URL` com a URL do backend (lida no build; refaça o deploy se mudar). O domínio usado no canonical, no sitemap e nas prévias vem de `VERCEL_PROJECT_PRODUCTION_URL` (automático na Vercel); `SITE_URL` sobrescreve. `frontend/vercel.json` liga `cleanUrls`, reescreve `/r/:id` para a casca `resultado.html` (com `noindex`) e deixa rotas desconhecidas caírem em `404.html`.
 - `@vercel/analytics` (visitas) e `@vercel/speed-insights` (Core Web Vitals) estão em `frontend/src/main.tsx`. As URLs `/r/<id>` são agrupadas como `/r/[id]`.
 

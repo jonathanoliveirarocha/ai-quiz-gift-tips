@@ -2,11 +2,11 @@ import { motion } from 'motion/react'
 import { ArrowRight, ShieldCheck, Sparkles, MessageCircleHeart, ShoppingBag } from 'lucide-react'
 import { GUIDE_LINKS } from '../content/guides/registry.ts'
 import { HOME_FAQ } from '../content/home.ts'
+import { STORE_NAMES } from '../content/stores.ts'
 import Faq from './Faq.tsx'
 
 const ORBIT = ['☕', '📚', '🎧', '🎮', '🌿', '📸', '🍷', '🎨']
 const OCCASIONS = ['🎄 Natal', '🎂 Aniversário', '🤫 Amigo secreto', '💘 Namoro', '💐 Dia das Mães', '👔 Dia dos Pais', '🏆 Formatura', '💍 Casamento', '🙏 Agradecimento', '💝 Só porque sim']
-const STORES = ['Amazon', 'Mercado Livre', 'Magalu', 'Americanas', 'Shopee', 'KaBuM!']
 
 const STEPS = [
   { icon: MessageCircleHeart, title: 'Conte sobre a pessoa', text: 'Jeito, gostos, rotina e aquele detalhe que só você sabe.' },
@@ -87,7 +87,7 @@ export default function Landing({ onStart }: { onStart: () => void }) {
       <section className="stores-row">
         <span>Sugestões com links para</span>
         <div className="stores-list">
-          {STORES.map((s) => (
+          {STORE_NAMES.map((s) => (
             <span key={s}>{s}</span>
           ))}
         </div>

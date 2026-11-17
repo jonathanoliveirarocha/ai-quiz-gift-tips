@@ -179,7 +179,7 @@ const guide: Guide = {
     },
     {
       q: 'Como escolher presente para avô ou avó com ajuda da IA?',
-      a: 'No quiz do Presente Certo, você escolhe a relação "Avô ou avó", informa a idade, a ocasião e o orçamento e conta do que a pessoa gosta e o que ela já tem. São 11 perguntas rápidas, e o resultado traz a sugestão principal, alternativas com links para lojas como Amazon e Mercado Livre, além de uma dica de entrega, sem cadastro e sem custo.',
+      a: 'No quiz do Presente Certo, você escolhe a relação "Avô ou avó", informa a idade, a ocasião e o orçamento e conta do que a pessoa gosta e o que ela já tem. São 11 perguntas rápidas, e o resultado traz a sugestão principal, alternativas com links para lojas como Amazon e Shopee, além de uma dica de entrega, sem cadastro e sem custo.',
     },
   ],
   related: ['presente-para-mae', 'presente-para-pai', 'presente-de-natal', 'presente-para-quem-tem-tudo'],
