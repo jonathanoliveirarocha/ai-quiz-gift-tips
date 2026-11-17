@@ -5,13 +5,18 @@ import { SpeedInsights } from '@vercel/speed-insights/react'
 import './styles.css'
 import App from './App.tsx'
 import { loadGuide } from './content/guides/registry.ts'
+import { loadLegal } from './content/legal/registry.ts'
 import { routeKey } from './routes.ts'
+import { trackVisit } from './lib/tracking.ts'
 
-// Agrupa os links de resultado (/r/<id>) em uma única rota nos painéis da Vercel.
+// Antes de enviar à Vercel: tira o que vem depois do # (onde pode estar o nome da pessoa presenteada)
+// e agrupa os links de resultado (/r/<id>) em uma única rota nos painéis.
 const groupResultRoutes = <T extends { url: string }>(event: T) => ({
   ...event,
-  url: event.url.replace(/\/r\/[a-f\d]{24}/i, '/r/[id]'),
+  url: event.url.split('#')[0].replace(/\/r\/[A-Za-z0-9_-]{22,24}/, '/r/[id]'),
 })
+
+trackVisit()
 
 const app = (
   <StrictMode>
@@ -27,7 +32,7 @@ const container = document.getElementById('root')!
 // No `npm run dev` o #root vem vazio e o React renderiza do zero.
 // Em página de guia, o texto do guia é baixado antes (o HTML já está visível enquanto isso).
 const slug = window.location.pathname.replace(/^\/+|\/+$/g, '')
-loadGuide(slug)
+Promise.all([loadGuide(slug), loadLegal(slug)])
   .catch(() => undefined)
   .finally(() => {
     if (container.firstElementChild && container.dataset.route === routeKey(window.location.pathname)) {

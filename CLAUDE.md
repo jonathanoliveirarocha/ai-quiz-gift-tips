@@ -180,36 +180,35 @@ ideias-de-projeto/
 
 # Projeto: Presente Certo (site)
 
-Quiz de presentes com IA. A pessoa responde 11 perguntas sobre quem vai ganhar o presente, o Gemini escolhe o presente ideal e sugere outras ideias, e o site mostra cards com links para lojas confiáveis. Implementa o produto 9 de [ideias/black-friday-top-10-produtos.md](ideias/black-friday-top-10-produtos.md) e o quiz de setup de [ideias/gta-6-top-10-produtos.md](ideias/gta-6-top-10-produtos.md).
+Quiz de presentes com IA, pensado para celular. A pessoa responde até 11 perguntas sobre quem vai ganhar o presente, a IA indica o presente ideal e outras ideias, e cada ideia tem botões de compra com link de afiliado (Amazon e Shopee). O site é **enxuto de propósito**: home com título, texto curto, botão do quiz, os 3 passos e FAQ; rodapé com guias e páginas legais. Não adicionar recursos extras (listas, lembretes, faixas sazonais, rascunho) sem o dono pedir, nem textos de marketing que citem as lojas. Implementa o produto 9 de [ideias/black-friday-top-10-produtos.md](ideias/black-friday-top-10-produtos.md).
 
 ## Como rodar
 `backend/` e `frontend/` são projetos independentes, cada um com seu `package.json`, `node_modules` e deploy.
-- **Backend:** `cd backend`, `npm install`, copie `.env.example` para `.env` e preencha, depois `npm run dev` (porta 3001).
-- **Frontend:** `cd frontend`, `npm install`; o `frontend/.env` define `VITE_API_URL` (endereço do backend); depois `npm run dev` (porta 5173).
-- Sem `GEMINI_API_KEY`, o backend roda em **modo demonstração** (ideias de um banco fixo, com aviso na tela).
+- **Backend:** `cd backend`, `npm install`, copie `.env.example` para `.env` e preencha, depois `npm run dev` (porta 3001). Testes: `npm test`.
+- **Frontend:** `cd frontend`, `npm install`; o `frontend/.env` define `VITE_API_URL`; depois `npm run dev` (porta 5173).
+- Sem `GEMINI_API_KEY`, o backend roda em **modo demonstração** (ideias do acervo próprio, com aviso na tela).
+- CI: `.github/workflows/ci.yml` roda os testes do backend, lint e build do frontend e `npm audit` a cada push.
 
-## Stack e estrutura
-- `frontend/` (React + TypeScript + Vite, `motion`, `lucide-react`) chama a API em `VITE_API_URL` + `/api/...`. `backend/` (Node + JavaScript ESM, Express 5, Mongoose, `@google/genai`) libera as origens de `CORS_ORIGIN`.
-- `backend/src/app.js` é o app Express, exportado como default (entrypoint da Vercel). `backend/src/local.js` só sobe o servidor localmente.
-- `backend/src/services/gemini.js`: prompt do sistema, schema JSON da resposta e chamada ao `gemini-3.5-flash-lite` (repete automaticamente em erros 503/500).
-- `backend/src/services/stores.js`: **única fonte dos links das lojas**. A IA só escolhe o termo de busca; toda sugestão ganha um botão para cada loja de `ACTIVE_STORES` (padrão: `amazon,shopee`; o Mercado Livre já está pronto, basta incluir `mercadolivre`). O backend monta as URLs, inclusive ao reabrir resultados salvos (`withStoreLinks`). Nunca use URL vinda da IA. Ao ativar uma loja, adicione o nome também em `frontend/src/content/stores.ts` (textos do site).
-- `backend/src/db.js`: conecta em `MONGODB_URI` (local ou Atlas). Se o DNS local recusar consultas SRV do Atlas, tenta de novo com DNS públicos. Sem MongoDB disponível, sobe um MongoDB embutido em `backend/.data` (o primeiro start baixa cerca de 780 MB).
-- Coleções: `quizresults` (respostas + resultado, base do link `/r/:id`), `products` (catálogo de parceiros/afiliados) e `clicks` (cliques nas lojas).
+## Backend (`backend/src`)
+- `app.js` (Express, entrypoint da Vercel) e `local.js` (servidor local). `routes.js`: `/quiz`, `/results/:id` (+ `/report`), `/links` (links de afiliado e produto da Shopee para os guias), `/clicks`, `/events` (funil anônimo), `/health` e `/admin/*` (produtos, `health`, `stats`, `DELETE /admin/results/:id` para pedidos de exclusão).
+- `services/generate.js`: IA principal (`GEMINI_MODEL`) → modelo reserva (`GEMINI_FALLBACK_MODEL`) → **acervo próprio** (`demo.js`). A visita nunca termina em erro por falha da IA; o acervo também entra no teto diário (`MAX_AI_CALLS_PER_DAY`) e depois de `MAX_MORE_IDEAS` pedidos de "outras ideias".
+- `services/gemini.js`: prompt (respostas entre `<respostas>`, contra injeção), schema da resposta e tempo total limitado (`AI_TIME_BUDGET_MS`).
+- `services/result.js`: normaliza e filtra no código (bebida e itens impróprios para menores, o que a pessoa disse que não quer, ofensas) e escolhe o presente ideal dentro do orçamento.
+- `services/stores.js`: **única fonte dos links das lojas**. A IA só escolhe o termo de busca; toda ideia ganha um botão por loja de `ACTIVE_STORES` (padrão `amazon,shopee`; Mercado Livre pronto). Tag da Amazon por canal (`AMAZON_TRACKING_IDS`), `{canal}` nos templates. Nunca use URL vinda da IA. `services/shopee.js`: API oficial da Shopee (opcional, com cache e pausa automática se falhar).
+- `services/security.js`: limite de requisições compartilhado no MongoDB (funciona em serverless), Turnstile opcional, comparação segura do token de admin. `services/ops.js`: uso diário de IA e alertas por `ALERT_WEBHOOK_URL`.
+- **Privacidade:** o nome nunca chega ao servidor (a IA escreve `{nome}`, o navegador troca). Textos livres vão só para a IA. O banco guarda só respostas de lista; resultados expiram em 180 dias (TTL), cliques e eventos em 13 meses, registro de acesso (Marco Civil) em 6 meses. Links usam código aleatório (`publicId`). `npm run migrate:privacy` ajusta dados antigos (rodar uma vez em produção).
+- `db.js`: `MONGODB_URI` (Atlas na Vercel); localmente, sobe um MongoDB embutido se não houver servidor.
 
-## Afiliados (preparado para o futuro)
-Passo a passo para gerar os links de Amazon, Shopee e Mercado Livre: [AFILIADOS.md](AFILIADOS.md).
-- **Amazon:** `AMAZON_ASSOCIATE_TAG` adiciona `&tag=` em todos os links.
-- **Outras lojas e redes** (Awin, Lomadee etc.): `AFFILIATE_TEMPLATE_<LOJA>` com `{url}` ou `{query}` transforma o link em deep link de afiliado.
-- **Catálogo próprio:** produtos com link de afiliado, imagem e preço aparecem em "Ofertas selecionadas" quando as tags combinam com o resultado. Para cadastrar: `npm run import:catalog -- arquivo.json` (formato em `backend/data/catalogo-exemplo.json`) ou a API `/api/admin/products` com o header `x-admin-token` (defina `ADMIN_TOKEN`). `GET /api/admin/stats` mostra cliques por loja.
-- Links de afiliado recebem `rel="sponsored"`, e o rodapé avisa que pode haver comissão (exigência do CONAR).
+## Frontend (`frontend/src`)
+- `App.tsx` (rotas e telas), `components/` (Landing, Quiz, Result, GiftCard, GuidePage, LegalPageView, AdminPanel em `/painel`), `lib/tracking.ts` (canal de origem por `utm_source`/referrer e eventos anônimos), `lib/personalize.ts` (troca `{nome}`; no link compartilhado o nome vai depois do `#`).
+- Páginas legais em `content/legal/` (privacidade, termos, quem somos). **Preencha `content/legal/owner.ts`** (o build avisa enquanto houver colchetes). A frase obrigatória da Amazon fica em `content/stores.ts` e aparece no rodapé.
+- Afiliados: passo a passo em [AFILIADOS.md](AFILIADOS.md). Links de afiliado têm `rel="sponsored nofollow"` e aviso de comissão.
 
 ## Deploy na Vercel (dois projetos)
-- **Backend:** projeto com Root Directory `backend`. A Vercel detecta o Express sozinha por `src/app.js`, sem `vercel.json`. Variáveis obrigatórias: `GEMINI_API_KEY`, `MONGODB_URI` (Atlas; o MongoDB embutido fica desativado na Vercel) e `CORS_ORIGIN` com o domínio do frontend (aceita `*`, ex.: `https://meu-front.vercel.app,https://meu-front-*.vercel.app`). Opcionais: `GEMINI_MODEL`, `ADMIN_TOKEN`, `ACTIVE_STORES`, `AMAZON_ASSOCIATE_TAG`, `AFFILIATE_TEMPLATE_*`.
-- **Frontend:** projeto com Root Directory `frontend` (preset Vite). Variável obrigatória: `VITE_API_URL` com a URL do backend (lida no build; refaça o deploy se mudar). O domínio usado no canonical, no sitemap e nas prévias vem de `VERCEL_PROJECT_PRODUCTION_URL` (automático na Vercel); `SITE_URL` sobrescreve. `frontend/vercel.json` liga `cleanUrls`, reescreve `/r/:id` para a casca `resultado.html` (com `noindex`) e deixa rotas desconhecidas caírem em `404.html`.
-- `@vercel/analytics` (visitas) e `@vercel/speed-insights` (Core Web Vitals) estão em `frontend/src/main.tsx`. As URLs `/r/<id>` são agrupadas como `/r/[id]`.
+- **Backend:** Root Directory `backend`. Obrigatórias: `GEMINI_API_KEY` (projeto com faturamento), `MONGODB_URI`, `CORS_ORIGIN`, `ADMIN_TOKEN`, `AMAZON_ASSOCIATE_TAG` e Shopee (`SHOPEE_APP_ID`/`SHOPEE_APP_SECRET` ou `AFFILIATE_TEMPLATE_SHOPEE`). Recomendadas: `ALERT_WEBHOOK_URL`, `AMAZON_TRACKING_IDS`. Lista completa em `backend/.env.example`.
+- **Frontend:** Root Directory `frontend` (preset Vite). Obrigatória: `VITE_API_URL`. Opcionais: `SITE_URL`, `GOOGLE_SITE_VERIFICATION`, `VITE_TURNSTILE_SITE_KEY`. `vercel.json` liga `cleanUrls`, reescreve `/r/:id` para `resultado.html` (noindex) e manda rotas desconhecidas para `404.html`.
 
 ## SEO e prévias de link
-- **Pré-renderização:** `npm run build` roda o Vite, um build SSR de `src/entry-server.tsx` e `scripts/prerender.mjs`, que grava o HTML pronto de cada página (home, guias, `resultado.html`, `404.html`) com title, description, canonical, Open Graph, Twitter e JSON-LD (`src/seo.ts`), além de `sitemap.xml` e `robots.txt`. O navegador só "acorda" esse HTML (`hydrateRoot`) quando o `data-route` do `#root` bate com a URL.
-- **Guias** (`src/content/guides/`): páginas de conteúdo por pessoa e ocasião (`/presente-para-mae` etc.), cada uma com ideias, dicas, FAQ e botão que abre o quiz já preenchido (`preset`, com valores idênticos aos de `src/quiz.ts`). Para criar um guia: novo arquivo com o tipo `Guide` (`src/content/types.ts`), import em `index.ts`, uma linha em `GUIDE_LINKS` (`registry.ts`, o build confere se bate) e `npm run og`. No navegador, cada guia é um arquivo JS separado, baixado só na própria página.
-- **Imagens de prévia** (`public/og/*.jpg`, 1200x630) e ícones (`favicon.ico`, `apple-touch-icon.png`, `public/icons/`) são gerados por `npm run og` (`scripts/og.mjs`, usa o Chrome ou o Edge instalado) e ficam no repositório; a Vercel não gera imagens no build.
-- Resultados (`/r/:id`) nunca são indexados: meta `noindex` na casca e header `X-Robots-Tag`.
+- `npm run build` pré-renderiza cada página (home, 16 guias, páginas legais, `resultado.html`, `404.html`, `painel.html`) com meta tags, Open Graph e JSON-LD (`src/seo.ts`), além de `sitemap.xml` e `robots.txt`. O navegador só reaproveita o HTML quando o `data-route` do `#root` bate com a URL.
+- **Guias** (`src/content/guides/`): cada ideia tem `query` e vira botão de compra (links chegam de `/api/links`). Para criar um guia: arquivo com o tipo `Guide`, import em `index.ts`, linha em `GUIDE_LINKS` (`registry.ts`) e `npm run og`.
+- Imagens de prévia (`public/og/*.jpg`) e ícones: `npm run og` (usa o Chrome ou o Edge instalado).

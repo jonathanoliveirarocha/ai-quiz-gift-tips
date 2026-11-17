@@ -20,6 +20,11 @@ export type Answers = {
 
 export type StoreLink = { store: string; name: string; url: string; affiliate: boolean }
 
+/** Produto real da Shopee (API oficial de afiliados), quando disponível. */
+export type ShopeeProduct = { name: string; imageUrl: string; price: number; url: string; rating: number | null; sales: number | null }
+
+export type StoreLinksItem = { query: string; stores: StoreLink[]; product: ShopeeProduct | null }
+
 export type GiftItem = {
   title: string
   description: string
@@ -31,11 +36,13 @@ export type GiftItem = {
   priceMax: number | null
   query: string
   stores: StoreLink[]
+  /** Preenchido no navegador quando a API da Shopee encontra um produto real. */
+  product?: ShopeeProduct | null
 }
 
 export type GiftResult = {
   profile: { archetype: string; summary: string; emoji: string }
-  idealGift: GiftItem & { confidence: number }
+  idealGift: GiftItem
   suggestions: GiftItem[]
   cardMessage: string
   deliveryTip: string
@@ -56,11 +63,15 @@ export type CatalogProduct = {
 
 export type QuizResponse = {
   id: string | null
-  mode: 'ia' | 'demo'
+  /** ia = gerado pela IA; acervo = ideias do acervo próprio (IA indisponível); demo = sem chave de IA. */
+  mode: 'ia' | 'acervo' | 'demo'
   createdAt: string
-  answers: Answers
+  /** Respostas não identificáveis guardadas no servidor (sem nome nem textos livres). */
+  answers: Partial<Answers>
   result: GiftResult
   catalog: CatalogProduct[]
+  /** false quando "Quero outras ideias" já usou o limite de chamadas de IA deste resultado. */
+  canMore?: boolean
 }
 
-export type ClickKind = 'ideal' | 'suggestion' | 'catalog'
+export type ClickKind = 'ideal' | 'suggestion' | 'catalog' | 'guide'

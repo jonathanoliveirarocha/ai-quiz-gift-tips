@@ -1,6 +1,8 @@
 import { GUIDES } from './content/guides/index.ts'
+import { LEGAL_PAGES } from './content/legal/index.ts'
 import { HOME, HOME_FAQ, SITE_NAME } from './content/home.ts'
 import type { Guide } from './content/types.ts'
+import type { LegalPage } from './content/legal/types.ts'
 
 /**
  * Uma página gerada no build (scripts/prerender.mjs).
@@ -18,6 +20,8 @@ export type PageMeta = {
   image: string
   imageAlt: string
   index: boolean
+  /** Página que só funciona no navegador (dados do aparelho): o HTML do build é só a moldura. */
+  clientOnly?: boolean
   lastmod?: string
   jsonLd?: Record<string, unknown>
 }
@@ -135,11 +139,68 @@ function guideMeta(site: string, guide: Guide): PageMeta {
   }
 }
 
+function legalMeta(site: string, page: LegalPage): PageMeta {
+  const path = `/${page.slug}`
+  const url = `${site}${path}`
+  return {
+    file: `${page.slug}.html`,
+    renderPath: path,
+    path,
+    title: page.title,
+    description: page.description,
+    ogTitle: page.h1,
+    ogDescription: page.description,
+    ogType: 'website',
+    image: ogImagePath('home'),
+    imageAlt: `${SITE_NAME}: ${page.h1}`,
+    index: true,
+    lastmod: page.updated,
+    jsonLd: {
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': page.slug === 'quem-somos' ? 'AboutPage' : 'WebPage',
+          name: page.h1,
+          url,
+          description: page.description,
+          inLanguage: 'pt-BR',
+          dateModified: page.updated,
+          isPartOf: { '@type': 'WebSite', name: SITE_NAME, url: `${site}/` },
+        },
+        {
+          '@type': 'BreadcrumbList',
+          itemListElement: [
+            { '@type': 'ListItem', position: 1, name: 'Início', item: `${site}/` },
+            { '@type': 'ListItem', position: 2, name: page.h1, item: url },
+          ],
+        },
+      ],
+    },
+  }
+}
+
+const appShell = (slug: string, title: string): PageMeta => ({
+  file: `${slug}.html`,
+  renderPath: `/${slug}`,
+  path: null,
+  title: `${title} | ${SITE_NAME}`,
+  description: 'Área do Presente Certo que funciona no seu navegador.',
+  ogTitle: HOME.ogTitle,
+  ogDescription: HOME.ogDescription,
+  ogType: 'website',
+  image: ogImagePath('home'),
+  imageAlt: SITE_NAME,
+  index: false,
+  clientOnly: true,
+})
+
 /** Todas as páginas que o build gera. */
 export function sitePages(site: string): PageMeta[] {
   return [
     homeMeta(site),
     ...GUIDES.map((g) => guideMeta(site, g)),
+    ...LEGAL_PAGES.map((p) => legalMeta(site, p)),
+    appShell('painel', 'Painel'),
     {
       // Casca usada por /r/:id (vercel.json). Resultados são pessoais: nunca entram no Google.
       file: 'resultado.html',
@@ -173,7 +234,7 @@ export function sitePages(site: string): PageMeta[] {
 const esc = (s: string) => s.replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
 
 /** Tags do <head> de uma página. `site` é a URL de produção, sem barra no final. */
-export function headTags(page: PageMeta, site: string) {
+export function headTags(page: PageMeta, site: string, options: { googleVerification?: string } = {}) {
   const url = page.path ? `${site}${page.path}` : null
   const image = `${site}${page.image}`
   const tags = [
@@ -199,6 +260,7 @@ export function headTags(page: PageMeta, site: string) {
     `<meta name="twitter:description" content="${esc(page.ogDescription)}" />`,
     `<meta name="twitter:image" content="${esc(image)}" />`,
     `<meta name="twitter:image:alt" content="${esc(page.imageAlt)}" />`,
+    options.googleVerification && `<meta name="google-site-verification" content="${esc(options.googleVerification)}" />`,
     page.jsonLd && `<script type="application/ld+json">${JSON.stringify(page.jsonLd).replace(/</g, '\\u003c')}</script>`,
   ]
   return tags.filter(Boolean).join('\n    ')

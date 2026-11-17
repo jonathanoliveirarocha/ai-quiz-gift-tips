@@ -25,19 +25,23 @@ const configured = [...new Set(config.activeStores.filter((id) => STORES[id]))];
 export const ACTIVE_STORE_IDS = configured.length ? configured : DEFAULT_ACTIVE;
 export const ACTIVE_STORE_NAMES = ACTIVE_STORE_IDS.map((id) => STORES[id].name);
 
-export function buildStoreLink(storeId, query) {
+/** Tag da Amazon para o canal de origem (AMAZON_TRACKING_IDS), ou a tag padrão. */
+export const amazonTagFor = (channel) => config.amazonTagsByChannel[channel] ?? config.amazonTag;
+
+export function buildStoreLink(storeId, query, channel = 'direto') {
   const store = STORES[storeId];
   let url = store.build(query);
   let affiliate = false;
 
-  if (storeId === 'amazon' && config.amazonTag) {
-    url += `&tag=${enc(config.amazonTag)}`;
+  const amazonTag = storeId === 'amazon' ? amazonTagFor(channel) : '';
+  if (amazonTag) {
+    url += `&tag=${enc(amazonTag)}`;
     affiliate = true;
   }
 
   const template = config.affiliateTemplate(storeId);
   if (template) {
-    url = template.replaceAll('{url}', enc(url)).replaceAll('{query}', enc(query));
+    url = template.replaceAll('{url}', enc(url)).replaceAll('{query}', enc(query)).replaceAll('{canal}', enc(channel));
     affiliate = true;
   }
 
@@ -45,4 +49,17 @@ export function buildStoreLink(storeId, query) {
 }
 
 /** Botões de todas as lojas ativas para um termo de busca, sempre na mesma ordem. */
-export const buildStoreLinks = (query) => ACTIVE_STORE_IDS.map((id) => buildStoreLink(id, query));
+export const buildStoreLinks = (query, channel = 'direto') => ACTIVE_STORE_IDS.map((id) => buildStoreLink(id, query, channel));
+
+/** Problemas de configuração que zeram comissão sem nenhum erro visível (mostrados no painel e no log). */
+export function affiliateWarnings() {
+  const warnings = [];
+  if (ACTIVE_STORE_IDS.includes('amazon') && !config.amazonTag) warnings.push('AMAZON_ASSOCIATE_TAG vazia: os botões da Amazon não geram comissão.');
+  if (ACTIVE_STORE_IDS.includes('shopee') && !config.affiliateTemplate('shopee') && !(config.shopeeAppId && config.shopeeSecret)) {
+    warnings.push('Shopee sem SHOPEE_APP_ID/SHOPEE_APP_SECRET nem AFFILIATE_TEMPLATE_SHOPEE: os botões da Shopee não geram comissão.');
+  }
+  for (const id of ACTIVE_STORE_IDS) {
+    if (id !== 'amazon' && id !== 'shopee' && !config.affiliateTemplate(id)) warnings.push(`${STORES[id].name} ativa sem AFFILIATE_TEMPLATE_${id.toUpperCase()}: botão sem comissão.`);
+  }
+  return warnings;
+}

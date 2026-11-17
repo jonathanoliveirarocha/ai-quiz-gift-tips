@@ -26,16 +26,21 @@ export default function StepBody({ step, answers, update, onPicked }: Props) {
           <input
             className="input input-xl"
             autoFocus
+            aria-label="Nome ou apelido de quem vai ganhar o presente (opcional)"
+            autoComplete="off"
             maxLength={40}
             placeholder="Ex.: Ana, Vô Zé, Mozão..."
             value={answers.name}
             onChange={(e) => update({ name: e.target.value })}
           />
-          <div className="field-label">Como você se refere a essa pessoa?</div>
-          <div className="segmented">
+          <div className="field-label" id="pronome">
+            Como você se refere a essa pessoa?
+          </div>
+          <div className="segmented" role="group" aria-labelledby="pronome">
             {PRONOUNS.map((p) => (
               <button
                 key={p.value}
+                aria-pressed={answers.pronoun === p.value}
                 className={answers.pronoun === p.value ? 'active' : ''}
                 onClick={() => update({ pronoun: p.value })}
               >
@@ -54,13 +59,16 @@ export default function StepBody({ step, answers, update, onPicked }: Props) {
             return (
               <button
                 key={o.value}
+                aria-pressed={selected}
                 className={`option ${selected ? 'selected' : ''}`}
                 onClick={() => {
                   update({ [step.field]: o.value })
                   onPicked()
                 }}
               >
-                <span className="option-emoji">{o.emoji}</span>
+                <span className="option-emoji" aria-hidden="true">
+                  {o.emoji}
+                </span>
                 <span className="option-label">{o.value}</span>
                 {selected && (
                   <span className="option-check">
@@ -81,13 +89,16 @@ export default function StepBody({ step, answers, update, onPicked }: Props) {
             return (
               <button
                 key={budget.label}
+                aria-pressed={selected}
                 className={`option ${selected ? 'selected' : ''}`}
                 onClick={() => {
                   update({ budget })
                   onPicked()
                 }}
               >
-                <span className="option-emoji">{emoji}</span>
+                <span className="option-emoji" aria-hidden="true">
+                  {emoji}
+                </span>
                 <span className="option-label">{budget.label}</span>
                 {selected && (
                   <span className="option-check">
@@ -113,22 +124,24 @@ export default function StepBody({ step, answers, update, onPicked }: Props) {
               return (
                 <button
                   key={o.value}
+                  aria-pressed={active}
                   className={`chip ${active ? 'active' : ''}`}
                   disabled={!active && full}
                   onClick={() => toggle(o.value)}
                 >
-                  <span>{o.emoji}</span> {o.value}
+                  <span aria-hidden="true">{o.emoji}</span> {o.value}
                 </button>
               )
             })}
           </div>
           <div className="multi-footer">
-            <span className={`counter ${full ? 'full' : ''}`}>
+            <span className={`counter ${full ? 'full' : ''}`} aria-live="polite">
               {selected.length}/{step.max} escolhidos
             </span>
             {step.other && (
               <input
                 className="input"
+                aria-label="Outro interesse (opcional)"
                 maxLength={120}
                 placeholder="Outro interesse? Escreva aqui (ex.: crochê, F1, K-pop)"
                 value={answers.otherInterest}
@@ -177,6 +190,7 @@ export default function StepBody({ step, answers, update, onPicked }: Props) {
           <textarea
             ref={textRef}
             className="input textarea"
+            aria-label={step.field === 'avoid' ? 'O que a pessoa já tem ou não curte (opcional)' : 'Algo especial sobre a pessoa (opcional)'}
             autoFocus
             rows={4}
             maxLength={max}

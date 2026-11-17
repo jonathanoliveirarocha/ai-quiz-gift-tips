@@ -1,4 +1,6 @@
 import { GUIDE_LINKS } from '../content/guides/registry.ts'
+import { LEGAL_LINKS } from '../content/legal/registry.ts'
+import { AMAZON_DISCLOSURE } from '../content/stores.ts'
 
 export default function Footer() {
   return (
@@ -15,10 +17,20 @@ export default function Footer() {
           ))}
         </ul>
       </nav>
-      <p>
-        Preços são estimativas e podem mudar. Confira o valor final na loja. Alguns links podem ser de afiliados, sem
-        custo extra para você.
-      </p>
+      <div className="footer-legal">
+        <p>
+          Os links para comprar são de afiliado: podemos receber uma comissão, sem custo extra para você. Os preços são estimativas. {AMAZON_DISCLOSURE}
+        </p>
+        <nav aria-label="Institucional">
+          <ul>
+            {LEGAL_LINKS.map((l) => (
+              <li key={l.slug}>
+                <a href={`/${l.slug}`}>{l.label}</a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </div>
     </footer>
   )
 }

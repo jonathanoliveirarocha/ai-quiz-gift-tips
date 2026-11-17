@@ -1,8 +1,6 @@
 import { motion } from 'motion/react'
-import { ArrowRight, ShieldCheck, Sparkles, MessageCircleHeart, ShoppingBag } from 'lucide-react'
-import { GUIDE_LINKS } from '../content/guides/registry.ts'
+import { ArrowRight, ShieldCheck, Sparkles, MessageCircleHeart, Gift } from 'lucide-react'
 import { HOME_FAQ } from '../content/home.ts'
-import { STORE_NAMES } from '../content/stores.ts'
 import Faq from './Faq.tsx'
 
 const ORBIT = ['☕', '📚', '🎧', '🎮', '🌿', '📸', '🍷', '🎨']
@@ -11,7 +9,7 @@ const OCCASIONS = ['🎄 Natal', '🎂 Aniversário', '🤫 Amigo secreto', '�
 const STEPS = [
   { icon: MessageCircleHeart, title: 'Conte sobre a pessoa', text: 'Jeito, gostos, rotina e aquele detalhe que só você sabe.' },
   { icon: Sparkles, title: 'A IA analisa tudo', text: 'A IA cruza as respostas e escolhe o presente que mais combina.' },
-  { icon: ShoppingBag, title: 'Compre com segurança', text: 'Opções reais, com links diretos para lojas confiáveis.' },
+  { icon: Gift, title: 'A ideia já vem pronta', text: 'O presente ideal e outras opções, com o link para comprar.' },
 ]
 
 export default function Landing({ onStart }: { onStart: () => void }) {
@@ -26,8 +24,7 @@ export default function Landing({ onStart }: { onStart: () => void }) {
             O presente <em className="grad-text">certo</em> para quem você ama.
           </h1>
           <p className="hero-text">
-            Não sabe o que dar de presente? Responda perguntas rápidas sobre a pessoa. A IA entende o jeito, os gostos e os
-            detalhes, e diz qual é o presente ideal, com opções reais nas lojas mais confiáveis do Brasil.
+            Não sabe o que dar de presente? Responda perguntas rápidas sobre a pessoa e a IA indica o presente certo, pensado para o seu orçamento.
           </p>
           <div className="hero-cta">
             <button className="btn btn-primary btn-lg" onClick={onStart}>
@@ -82,33 +79,6 @@ export default function Landing({ onStart }: { onStart: () => void }) {
             <p>{text}</p>
           </motion.article>
         ))}
-      </section>
-
-      <section className="stores-row">
-        <span>Sugestões com links para</span>
-        <div className="stores-list">
-          {STORE_NAMES.map((s) => (
-            <span key={s}>{s}</span>
-          ))}
-        </div>
-      </section>
-
-      <section className="home-section" aria-labelledby="guias">
-        <div className="section-head">
-          <h2 id="guias">Ideias de presente para cada pessoa e ocasião</h2>
-          <p>Guias com dicas para escolher e ideias organizadas por estilo e orçamento.</p>
-        </div>
-        <ul className="guide-links">
-          {GUIDE_LINKS.map((g) => (
-            <li key={g.slug}>
-              <a className="guide-link glass" href={`/${g.slug}`}>
-                <span aria-hidden="true">{g.emoji}</span>
-                {g.label}
-                <ArrowRight size={16} />
-              </a>
-            </li>
-          ))}
-        </ul>
       </section>
 
       <section className="home-section" aria-labelledby="faq">

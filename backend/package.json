@@ -8,7 +8,9 @@
   "scripts": {
     "dev": "node --watch src/local.js",
     "start": "node src/local.js",
-    "import:catalog": "node scripts/import-catalog.js"
+    "import:catalog": "node scripts/import-catalog.js",
+    "test": "node --test",
+    "migrate:privacy": "node scripts/migrate-privacy.js"
   },
   "dependencies": {
     "@google/genai": "^3.3.0",

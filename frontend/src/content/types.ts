@@ -13,7 +13,11 @@ export type GuidePreset = {
   pronoun?: Pronoun
 }
 
-export type GuideIdea = { emoji: string; title: string; text: string }
+/**
+ * Uma ideia de presente do guia. `query` é o termo pesquisado na Amazon e na Shopee
+ * (vira botão de loja com link de afiliado); toda ideia precisa ser algo à venda nessas lojas.
+ */
+export type GuideIdea = { emoji: string; title: string; text: string; query: string }
 
 export type Guide = {
   /** Caminho da página, sem barra: /presente-para-mae */

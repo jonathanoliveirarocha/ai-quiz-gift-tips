@@ -1,7 +1,14 @@
+import { useEffect, useState } from 'react'
 import { ArrowRight, ChevronRight, ShieldCheck, Sparkles } from 'lucide-react'
 import { guideLink, type GuideLink } from '../content/guides/registry.ts'
+import { STORE_NAMES } from '../content/stores.ts'
 import type { Guide, GuidePreset } from '../content/types.ts'
+import { getStoreLinks } from '../api.ts'
+import { plainStoreLinks } from '../lib/storeSearch.ts'
+import { track } from '../lib/tracking.ts'
+import type { StoreLinksItem } from '../types.ts'
 import Faq from './Faq.tsx'
+import { ProductPreview, StoreButtons } from './GiftCard.tsx'
 
 const formatDate = (iso: string) =>
   new Date(`${iso}T12:00:00Z`).toLocaleDateString('pt-BR', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' })
@@ -9,7 +16,13 @@ const formatDate = (iso: string) =>
 function QuizCta({ guide, onStart, compact = false }: { guide: Guide; onStart: (preset: GuidePreset) => void; compact?: boolean }) {
   return (
     <div className={`guide-cta${compact ? ' guide-cta-compact' : ''}`}>
-      <button className="btn btn-primary btn-lg" onClick={() => onStart(guide.preset)}>
+      <button
+        className="btn btn-primary btn-lg"
+        onClick={() => {
+          track('guide_cta')
+          onStart(guide.preset)
+        }}
+      >
         {guide.cta} <ArrowRight size={20} />
       </button>
       <span className="hero-note">
@@ -21,6 +34,20 @@ function QuizCta({ guide, onStart, compact = false }: { guide: Guide; onStart: (
 
 export default function GuidePage({ guide, onStart }: { guide: Guide; onStart: (preset: GuidePreset) => void }) {
   const related = guide.related.map(guideLink).filter((g): g is GuideLink => Boolean(g))
+  // Links de afiliado (e produto real da Shopee) chegam do backend depois que a página abre.
+  const [links, setLinks] = useState<Record<string, StoreLinksItem>>({})
+
+  useEffect(() => {
+    let alive = true
+    getStoreLinks(guide.ideas.flatMap((group) => group.items.map((i) => ({ query: i.query }))))
+      .then((items) => {
+        if (alive) setLinks(Object.fromEntries(items.map((item) => [item.query, item])))
+      })
+      .catch(() => {})
+    return () => {
+      alive = false
+    }
+  }, [guide])
 
   return (
     <article className="guide">
@@ -51,7 +78,8 @@ export default function GuidePage({ guide, onStart }: { guide: Guide; onStart: (
         </div>
         <QuizCta guide={guide} onStart={onStart} />
         <p className="guide-updated">
-          Atualizado em <time dateTime={guide.updated}>{formatDate(guide.updated)}</time>
+          Por Equipe Presente Certo · Atualizado em <time dateTime={guide.updated}>{formatDate(guide.updated)}</time> ·{' '}
+          <a href="/quem-somos">Como fazemos os guias</a>
         </p>
       </header>
 
@@ -76,18 +104,30 @@ export default function GuidePage({ guide, onStart }: { guide: Guide; onStart: (
             <h2 id={`ideias-${gi}`}>{group.heading}</h2>
             {group.intro && <p>{group.intro}</p>}
           </div>
+          {gi === 0 && <p className="affiliate-note">Links de afiliado: se você comprar, podemos ganhar uma comissão, sem custo extra para você.</p>}
           <ul className="guide-ideas">
-            {group.items.map((idea) => (
-              <li key={idea.title} className="guide-idea glass">
-                <span className="guide-idea-emoji" aria-hidden="true">
-                  {idea.emoji}
-                </span>
-                <div>
-                  <h3>{idea.title}</h3>
-                  <p>{idea.text}</p>
-                </div>
-              </li>
-            ))}
+            {group.items.map((idea) => {
+              const live = links[idea.query]
+              return (
+                <li key={idea.title} className="guide-idea glass">
+                  <span className="guide-idea-emoji" aria-hidden="true">
+                    {idea.emoji}
+                  </span>
+                  <div className="guide-idea-body">
+                    <h3>{idea.title}</h3>
+                    <p>{idea.text}</p>
+                    {live?.product && <ProductPreview product={live.product} title={idea.title} resultId={null} kind="guide" />}
+                    <StoreButtons
+                      stores={live?.stores ?? plainStoreLinks(idea.query, STORE_NAMES)}
+                      title={idea.title}
+                      resultId={null}
+                      kind="guide"
+                      hasProduct={Boolean(live?.product)}
+                    />
+                  </div>
+                </li>
+              )
+            })}
           </ul>
         </section>
       ))}

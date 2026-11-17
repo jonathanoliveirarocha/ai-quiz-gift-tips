@@ -1,6 +1,7 @@
-// Modo demonstração: usado quando não há GEMINI_API_KEY. Escolhe ideias de um banco fixo
-// com base nos interesses e no orçamento, para o site funcionar de ponta a ponta sem IA.
+// Acervo próprio de ideias: plano B quando a IA está indisponível, lenta ou no teto diário de custo,
+// e modo demonstração quando não há GEMINI_API_KEY. Escolhe ideias pelos interesses e pelo orçamento.
 import { normalizeTag } from './catalog.js';
+import { NAME_TOKEN } from './answers.js';
 
 const IDEAS = [
   ['cafe', 'Moedor de café manual de aço inox', '☕', 'Casa', 'produto', 120, 260, 'moedor de cafe manual'],
@@ -70,7 +71,7 @@ export function generateDemo(answers, exclude = []) {
   const picks = pool.slice(0, 6);
   while (picks.length < 5) picks.push(FALLBACKS[picks.length % FALLBACKS.length]);
 
-  const name = answers.name;
+  const name = answers.hasName ? NAME_TOKEN : '';
   const traits = answers.personality.slice(0, 2).map((p) => p.toLowerCase());
   const why = (idea) =>
     `Combina com ${name || 'essa pessoa'} porque conversa com ${idea.key && keys.includes(idea.key) ? `o interesse por ${idea.category.toLowerCase()}` : 'o estilo descrito no quiz'}` +
@@ -81,10 +82,12 @@ export function generateDemo(answers, exclude = []) {
   return {
     profile: {
       archetype: traits.length ? `Perfil ${traits.join(' + ')}` : 'Uma pessoa única',
-      summary: `Modo demonstração: este perfil foi montado a partir dos interesses marcados, sem a análise completa da IA.`,
+      summary: traits.length
+        ? `Pelas respostas, um perfil de ${traits.join(' e ')}: as ideias abaixo seguem esses interesses e o orçamento escolhido.`
+        : 'As ideias abaixo seguem os interesses marcados e o orçamento escolhido.',
       emoji: '✨',
     },
-    idealGift: { ...toItem(ideal), confidence: matched.length ? 82 : 64 },
+    idealGift: toItem(ideal),
     suggestions: rest.slice(0, 5).map(toItem),
     cardMessage: `${name ? `${name}, ` : ''}escolhi este presente pensando em você e em tudo que te faz feliz. Que ele traga muitos momentos bons!`,
     deliveryTip: 'Entregue junto com um bilhete escrito à mão contando por que você lembrou dessa pessoa ao escolher o presente.',

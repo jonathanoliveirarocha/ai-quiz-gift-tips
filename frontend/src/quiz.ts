@@ -37,7 +37,8 @@ export const STEPS: Step[] = [
   {
     kind: 'name',
     title: () => 'Pra quem é o presente?',
-    subtitle: () => 'O nome ou apelido aparece no resultado e deixa tudo mais pessoal.',
+    subtitle: () => 'Opcional. Ele aparece só no resultado.',
+    optional: true,
   },
   {
     kind: 'single',
@@ -94,14 +95,15 @@ export const STEPS: Step[] = [
   {
     kind: 'budget',
     title: () => 'Quanto você quer investir?',
-    subtitle: () => 'Todas as sugestões respeitam esse limite.',
+    subtitle: () => 'As sugestões são pensadas para esse valor (os preços são estimativas).',
   },
   {
     kind: 'multi',
     field: 'personality',
+    optional: true,
     max: 4,
     title: (who) => `Como é o jeito de ${who}?`,
-    subtitle: () => 'Escolha até 4 traços que mais combinam.',
+    subtitle: () => 'Escolha até 4 traços que mais combinam. Não conhece bem? Pode pular.',
     options: [
       { value: 'Aventura e adrenalina', emoji: '🧗' },
       { value: 'Curte ficar em casa', emoji: '🛋️' },
@@ -166,6 +168,7 @@ export const STEPS: Step[] = [
   {
     kind: 'single',
     field: 'perfectSaturday',
+    optional: true,
     title: (who) => `Como é o sábado perfeito de ${who}?`,
     options: [
       { value: 'Maratonando séries no sofá', emoji: '🛋️' },
@@ -192,16 +195,16 @@ export const STEPS: Step[] = [
     field: 'avoid',
     optional: true,
     title: (who) => `O que ${who} já tem ou não curte?`,
-    subtitle: () => 'Assim a IA não repete o que já existe nem erra o gosto.',
+    subtitle: () => 'Assim a IA não repete o que já existe nem erra o gosto. Não escreva dados de saúde, documentos ou contatos.',
     placeholder: 'Ex.: já tem Kindle, não bebe álcool, não usa perfume, odeia rosa...',
-    starters: ['Já tem ', 'Não gosta de ', 'Tem alergia a ', 'Não usa '],
+    starters: ['Já tem ', 'Não gosta de ', 'Não usa ', 'Não come '],
   },
   {
     kind: 'text',
     field: 'special',
     optional: true,
     title: (who) => `Conte algo especial sobre ${who}`,
-    subtitle: () => 'Uma mania, um sonho, uma piada interna, algo que comentou que queria. É esse detalhe que faz a IA acertar em cheio.',
+    subtitle: () => 'Uma mania, um sonho, uma piada interna, algo que comentou que queria. É esse detalhe que faz a IA acertar em cheio. Evite nome completo, endereço ou dados pessoais.',
     placeholder: 'Ex.: vive dizendo que quer aprender a fazer pão; a gente tem uma piada interna sobre capivaras...',
     starters: ['Vive dizendo que quer ', 'Sonha em ', 'A gente tem uma piada interna sobre ', 'Está numa fase de ', 'Comentou que queria '],
   },
@@ -225,10 +228,11 @@ export const emptyAnswers = (): Answers => ({
 
 export const who = (answers: Answers) => answers.name.trim() || 'essa pessoa'
 
-export function isStepValid(step: Step, answers: Answers) {
+/** A etapa já tem resposta (usado para pular o que veio preenchido de um guia). */
+export function isStepAnswered(step: Step, answers: Answers) {
   switch (step.kind) {
     case 'name':
-      return true
+      return answers.name.trim().length > 0
     case 'single':
       return Boolean(answers[step.field])
     case 'budget':
@@ -236,8 +240,18 @@ export function isStepValid(step: Step, answers: Answers) {
     case 'multi':
       return answers[step.field].length > 0 || (step.other === true && answers.otherInterest.trim().length > 0)
     case 'scales':
-      return true
+      return false
     case 'text':
-      return step.optional === true || answers[step.field].trim().length > 0
+      return answers[step.field].trim().length > 0
   }
 }
+
+/** Pode avançar: etapas opcionais e as escalas sempre podem; as outras precisam de resposta. */
+export const isStepValid = (step: Step, answers: Answers) => step.optional === true || step.kind === 'scales' || isStepAnswered(step, answers)
+
+/** Faixas de idade de menores (para avisos de privacidade e filtros de segurança). */
+export const isMinorAge = (age: string) => /crian|adolesc/i.test(age)
+
+/** Índices das perguntas que vieram respondidas (ex.: relação e ocasião de um guia). */
+export const prefilledSteps = (answers: Answers) =>
+  STEPS.flatMap((step, i) => (step.kind !== 'name' && step.kind !== 'scales' && isStepAnswered(step, answers) ? [i] : []))

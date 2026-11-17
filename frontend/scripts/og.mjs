@@ -111,7 +111,7 @@ const images = [
     name: 'home',
     kicker: 'Quiz grátis com IA',
     title: 'O presente <em>certo</em> para quem você ama.',
-    tagline: 'Responda sobre a pessoa e a IA indica o presente ideal, com opções em lojas confiáveis.',
+    tagline: 'Responda perguntas rápidas sobre a pessoa e a IA indica o presente ideal.',
     emoji: '🎁',
     orbit: HOME_ORBIT,
   },
