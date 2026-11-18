@@ -18,9 +18,10 @@ type Props = {
 }
 
 const variants = {
-  enter: (dir: number) => ({ opacity: 0, x: dir * 60 }),
-  center: { opacity: 1, x: 0 },
-  exit: (dir: number) => ({ opacity: 0, x: dir * -60 }),
+  // x em 3D (translate3d) para a troca de pergunta rodar na GPU, sem repintar
+  enter: (dir: number) => ({ opacity: 0, x: dir * 60, z: 0 }),
+  center: { opacity: 1, x: 0, z: 0 },
+  exit: (dir: number) => ({ opacity: 0, x: dir * -60, z: 0 }),
 }
 
 export default function Quiz({ initial, startIndex = 0, skip = [], onSubmit, onExit }: Props) {

@@ -2445,6 +2445,33 @@ input[type='range']::-moz-range-thumb {
   }
 }
 
+/* Celulares e telas de toque: troca efeitos caros por equivalentes leves.
+   O backdrop-filter era recalculado a cada quadro (troca de pergunta + fundo animado),
+   o que travava e fazia o quiz piscar. */
+@media (max-width: 900px), (hover: none) and (pointer: coarse) {
+  .glass {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    background: rgba(27, 18, 48, 0.88);
+  }
+
+  .orbit-item {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+
+  /* Fundo parado: o desfoque é desenhado uma vez e não repinta a tela inteira sem parar */
+  .blob {
+    animation: none;
+    filter: blur(80px);
+  }
+
+  /* Degradê animado do botão repintava a cada quadro */
+  .btn-primary {
+    animation: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
