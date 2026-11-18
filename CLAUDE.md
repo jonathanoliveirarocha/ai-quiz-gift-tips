@@ -188,6 +188,7 @@ Quiz de presentes com IA, pensado para celular. A pessoa responde até 11 pergun
 - **Frontend:** `cd frontend`, `npm install`; o `frontend/.env` define `VITE_API_URL`; depois `npm run dev` (porta 5173).
 - Sem `GEMINI_API_KEY`, o backend roda em **modo demonstração** (ideias do acervo próprio, com aviso na tela).
 - CI: `.github/workflows/ci.yml` roda os testes do backend, lint e build do frontend e `npm audit` a cada push.
+- **Vídeos para o Instagram:** `video/` é um projeto Remotion independente (Reels e capa com a identidade do site). Comandos e mapa dos arquivos em `video/README.md`; roteiro e legenda em `video/ROTEIRO.md`.
 
 ## Backend (`backend/src`)
 - `app.js` (Express, entrypoint da Vercel) e `local.js` (servidor local). `routes.js`: `/quiz`, `/results/:id` (+ `/report`), `/links` (links de afiliado e produto da Shopee para os guias), `/clicks`, `/events` (funil anônimo), `/health` e `/admin/*` (produtos, `health`, `stats`, `DELETE /admin/results/:id` para pedidos de exclusão).
